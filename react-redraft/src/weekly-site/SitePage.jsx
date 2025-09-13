@@ -5,6 +5,8 @@ import "./site.css";
 
 import SleeperForm from "./components/SleeperForm.jsx";
 import TweaksPanel from "./components/TweaksPanel.jsx";
+import ExportButton from "./ExportButton.jsx";
+import { fetchLeagueUsers } from '../redraft/sleeper-league/sleeperAPI.js';
 
 // NOTE: use a RELATIVE import so CI (Linux) resolves it correctly
 import WeeklyBoard from "../weekly/weeklyboard/weeklyboard.jsx";
@@ -13,13 +15,32 @@ import WeeklyBoard from "../weekly/weeklyboard/weeklyboard.jsx";
 const isEmptyObj = (obj) => !obj || (Object.keys(obj).length === 0 && obj.constructor === Object);
 
 export default function WeeklySitePage() {
+  const sp = new URLSearchParams(window.location.search);
   const [leagueId, setLeagueId] = useState("");
   const [teamName, setTeamName] = useState("");
   const [ownerId, setOwnerId]   = useState("");   // ← NEW: persist which team is selected
-  const [week, setWeek] = useState(1);
+  const [week, setWeek] = useState(sp.get("week") || 1);
   const [overrides, setOverrides] = useState({});
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+
+  
+    useEffect(() => {
+        if (!leagueId || !ownerId) return;
+        const popTeamNameFromOwnerId = async () => {
+          const users = await fetchLeagueUsers(leagueId);
+          let selUser =
+            (ownerId && users.find(u => String(u.user_id) === String(ownerId))) ||
+            users[0];
+          const displayLabel =
+            (selUser?.metadata?.team_name && selUser.metadata.team_name.trim()) ||
+            selUser?.display_name ||
+            '';
+          console.log('👥 Team Name:', displayLabel);
+          setTeamName(displayLabel);
+        }
+        popTeamNameFromOwnerId();
+      }, [leagueId, ownerId])
 
   // ---- hydrate from URL (leagueId, teamName, ownerId, week, overrides via ?o=) ----
   useEffect(() => {
@@ -132,6 +153,9 @@ export default function WeeklySitePage() {
             />
           </section>
         </aside>
+        <ExportButton 
+          className="weeklyboard"      
+        />
 
         {/* RIGHT: Weekly board (fetches league/users itself; now receives ownerId too) */}
         <section className="wb-right">

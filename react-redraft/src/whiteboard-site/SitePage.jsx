@@ -205,6 +205,23 @@ export default function WhiteboardSite() {
   const [ovKey, setOvKey] = useState(0);
 
   useEffect(() => {
+    if (!leagueId || !ownerId) return;
+    const popTeamNameFromOwnerId = async () => {
+      const users = await fetchLeagueUsers(leagueId);
+      let selUser =
+        (ownerId && users.find(u => String(u.user_id) === String(ownerId))) ||
+        users[0];
+      const displayLabel =
+        (selUser?.metadata?.team_name && selUser.metadata.team_name.trim()) ||
+        selUser?.display_name ||
+        '';
+      console.log('👥 Team Name:', displayLabel);
+      setTeamName(displayLabel);
+    }
+    popTeamNameFromOwnerId();
+  }, [leagueId, ownerId])
+
+  useEffect(() => {
     if (!rosterIds.length) { setLineup([]); return; }
     try { setLineup(buildStartingLineup(settings.positions, rosterIds, playersById)); }
     catch (e) { console.error(e); }

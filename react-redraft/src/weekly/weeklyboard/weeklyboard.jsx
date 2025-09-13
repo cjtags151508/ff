@@ -269,14 +269,14 @@ export default function WeeklyBoard(props) {
       <div
         style={{
           position:"relative",
-          width:"1920px",
-          height:"1080px",
+          width:"1000px",
+          height:"1070px",
           backgroundImage:`url(${weeklyBase})`,
           backgroundSize:"contain",
           backgroundRepeat:"no-repeat",
           backgroundPosition:"top left",
           overflow:"hidden",
-        }}
+        }} className="weeklyboard"
       >
         {/* Team Name (auto-fit to 660px; shrinks when needed) */}
         <div style={{ position:"absolute", top:50, left:40, zIndex:5, width:TEAMNAME_WIDTH }}>

@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { fetchLeagueUsers } from '../../redraft/sleeper-league/sleeperAPI.js';
 
 export default function SleeperForm({ onLoad, loading }) {
+  const sp = new URLSearchParams(window.location.search);
   const [leagueId, setLeagueId] = useState('');
-  const [week, setWeek] = useState(1);
+  const [week, setWeek] = useState(sp.get('week') || 1);
 
   const [fetchingTeams, setFetchingTeams] = useState(false);
   const [teams, setTeams] = useState([]); // [{ value, label, teamName, displayName }]
@@ -18,6 +19,7 @@ export default function SleeperForm({ onLoad, loading }) {
       const lid = sp.get('leagueId') || sp.get('league') || '';
       if (lid) setLeagueId(lid);
       const w = Number(sp.get('week'));
+      console.log('w', w);
       if (Number.isFinite(w) && w > 0) setWeek(w);
     } catch {}
   }, []);
