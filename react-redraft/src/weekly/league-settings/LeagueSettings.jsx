@@ -7,7 +7,7 @@ export default function LeagueSettings({ settings }) {
   // scoring label
   const pprNum = Number(settings?.ppr ?? 0);
   const is = (x) => Math.abs(pprNum - x) < 1e-6;
-  let scoringLabel = 'STRD';
+  let scoringLabel = 'STD';
   if (is(1)) scoringLabel = 'PPR';
   else if (is(0.5)) scoringLabel = 'Half';
 

@@ -15,7 +15,7 @@ import OPP_YELLOW     from "./lights/opponent-yellow.png";
 import OPP_RED        from "./lights/opponent-red.png";
 
 /* Category order: Matchup → Vegas → Offense */
-const CATS = ["matchup", "vegas", "offense"];
+const CATS = ["matchup", "offense", "vegas"];
 
 /* Normalize a full name so id-less rows can still match lights by name */
 const HYPHENS = /[\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2043\uFE58\uFE63\uFF0D-]/g;
