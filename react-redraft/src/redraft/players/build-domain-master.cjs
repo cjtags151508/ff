@@ -1,38 +1,35 @@
-// src/redraft/players/build-domain-master.cjs
-// Single-run builder for players-by-id.json using local CSVs in this folder.
-// INPUT FILES (all optional except domain & players.json):
-//   - players.json                (Sleeper dump; required)
-//   - domain-rankings.csv         (Player_Id,Name,Position,Rank)             ← REQUIRED
-//   - players-4-factors.csv       (Player,Team,Position,Upside Score,Floor Score,Risk Profile,Overall Grade)
-//   - rankings-qb.csv             (headerless: "Name,Score" rows also OK)
-//   - rankings-te.csv             (Player,Value, ... trailing commas OK)
-//   - superflex-rankings.csv      (Rank,Player,Team)
-// OUTPUT:
-//   - players-by-id.json          (id -> merged object)
-//
-// Run:  node src/redraft/players/build-domain-master.cjs
+/* build-domain-master.cjs
+ * Single-run builder for players-by-id.json using local CSVs in this folder.
+ * INPUTS next to this file:
+ *   players.json              [required]  Sleeper dump (id -> player)
+ *   ranks.9.25.csv            [required]  name,team,position,rank  (or legacy: Player_Id,Name,Position,Rank)
+ *   players-4-factors.csv     [optional]  Player,Team,Position,Upside Score,Floor Score,Risk Profile,Overall Grade
+ *   rankings-qb.csv           [optional]  headerless or Player,Score
+ *   rankings-te.csv           [optional]  Player,Value
+ *   superflex-rankings.csv    [optional]  Rank,Player,Team
+ *
+ * Run:  node src/redraft/players/build-domain-master.cjs
+ * Out:  players-by-id.json  (id -> merged object)
+ */
 
-const fs = require('fs');
+const fs  = require('fs');
 const path = require('path');
 const csv = require('csv-parser');
 
-// ---------- fixed file locations (edit if your filenames differ) ----------
 const DIR = __dirname;
 const FILES = {
-  players:             path.join(DIR, 'players.json'),              // Sleeper dump
-  out:                 path.join(DIR, 'players-by-id.json'),
-  domain:              path.join(DIR, 'domain-rankings.csv'),
-  factors:             path.join(DIR, 'players-4-factors.csv'),
-  qbScores:            path.join(DIR, 'rankings-qb.csv'),
-  teValues:            path.join(DIR, 'rankings-te.csv'),
-  superflex:           path.join(DIR, 'superflex-rankings.csv'),
+  players:   path.join(DIR, 'players.json'),
+  out:       path.join(DIR, 'players-by-id.json'),
+  domain:    path.join(DIR, 'ranks-9-25.csv'),            // <-- NEW lowercase CSV
+  factors:   path.join(DIR, 'players-4-factors.csv'),
+  qbScores:  path.join(DIR, 'rankings-qb.csv'),
+  teValues:  path.join(DIR, 'rankings-te.csv'),
+  superflex: path.join(DIR, 'superflex-rankings.csv'),
 };
 
-// optional name→ID overrides
 let overrides = {};
 try { overrides = require('./overrides.js'); } catch { overrides = {}; }
 
-// ---------- helpers ----------
 function normalize(name = '') {
   return String(name)
     .toLowerCase()
@@ -41,30 +38,8 @@ function normalize(name = '') {
     .replace(/[^a-z0-9]/g, '')
     .trim();
 }
-const TEAM_ALIAS = { JAC:'JAX', LA:'LAR', OAK:'LV', SD:'LAC', STL:'LAR', WAS:'WAS', WSH:'WAS' };
+const TEAM_ALIAS = { JAC:'JAX', LA:'LAR', OAK:'LV', SD:'LAC', STL:'LAR', WAS:'WSH', WASH:'WSH' };
 const normTeam = (t) => (TEAM_ALIAS[(t || '').toUpperCase()] || (t || '').toUpperCase());
-
-function readCSV(file, opts = {}) {
-  return new Promise((resolve, reject) => {
-    const rows = [];
-    fs.createReadStream(file)
-      .pipe(csv({ mapHeaders: ({ header }) => String(header).trim(), ...opts }))
-      .on('data', (row) => rows.push(row))
-      .on('end', () => resolve(rows))
-      .on('error', reject);
-  });
-}
-// headerless QB: always coerce to {Player,Score}
-function readQBCSV(file) {
-  return new Promise((resolve, reject) => {
-    const rows = [];
-    fs.createReadStream(file)
-      .pipe(csv({ headers: ['Player','Score'], mapHeaders: ({ header }) => String(header).trim() }))
-      .on('data', (row) => rows.push(row))
-      .on('end', () => resolve(rows))
-      .on('error', reject);
-  });
-}
 
 function ensure(file, label) {
   if (!fs.existsSync(file)) {
@@ -72,15 +47,51 @@ function ensure(file, label) {
     process.exit(1);
   }
 }
-
 function optional(file) { return fs.existsSync(file) ? file : null; }
 
-// ---------- Sleeper indices ----------
-ensure(FILES.players, 'players.json (Sleeper dump)');
-ensure(FILES.domain, 'domain-rankings.csv');
+// Robust CSV reader (strip BOM on headers)
+function readCSV(file, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const rows = [];
+    fs.createReadStream(file)
+      .pipe(csv({
+        mapHeaders: ({ header }) => String(header).replace(/^\uFEFF/, '').trim(),
+        ...opts
+      }))
+      .on('data', (row) => rows.push(row))
+      .on('end', () => resolve(rows))
+      .on('error', reject);
+  });
+}
+// Headerless QB CSV → {Player,Score}
+function readQBCSV(file) {
+  return new Promise((resolve, reject) => {
+    const rows = [];
+    fs.createReadStream(file)
+      .pipe(csv({ headers: ['Player','Score'], skipLines: 0 }))
+      .on('data', (row) => rows.push(row))
+      .on('end', () => resolve(rows))
+      .on('error', reject);
+  });
+}
+// Force Superflex headers to avoid BOM / weird header names
+function readSFCsv(file) {
+  return new Promise((resolve, reject) => {
+    const rows = [];
+    fs.createReadStream(file)
+      .pipe(csv({ headers: ['Rank','Player','Team'], skipLines: 1 }))
+      .on('data', (row) => rows.push(row))
+      .on('end', () => resolve(rows))
+      .on('error', reject);
+  });
+}
+
+ensure(FILES.players, 'players.json');
+ensure(FILES.domain,  'ranks.9.25.csv');
 
 const sleeper = JSON.parse(fs.readFileSync(FILES.players, 'utf8'));
 
+// Build lookup indexes from Sleeper
 const nameToIds = new Map();
 const idToTeam = {};
 const idToPos  = {};
@@ -97,47 +108,70 @@ for (const [id, p] of Object.entries(sleeper)) {
   if (pos) idToPos[id] = String(pos).toUpperCase();
 }
 
-function resolveId(rawId, name, preferPos) {
+function resolveId(rawId, name, preferPos, teamCsv) {
   if (rawId) return String(rawId);
+  if (!name) return null;
   if (overrides[name]) return String(overrides[name]);
 
   const key = normalize(name);
   const ids = nameToIds.get(key) || [];
   if (!ids.length) return null;
-  if (!preferPos) return ids[0];
 
-  const wanted = String(preferPos).toUpperCase();
-  const match = ids.find((id) => idToPos[id] === wanted);
-  return match || ids[0];
+  const wantedPos = preferPos ? String(preferPos).toUpperCase() : null;
+  const wantedTeam = teamCsv ? normTeam(teamCsv) : null;
+
+  // Try pos+team match first
+  if (wantedPos || wantedTeam) {
+    const hit = ids.find((x) => {
+      const posOK  = wantedPos  ? (idToPos[x]   === wantedPos) : true;
+      const teamOK = wantedTeam ? (normTeam(idToTeam[x]) === wantedTeam) : true;
+      return posOK && teamOK;
+    });
+    if (hit) return hit;
+  }
+  // Then try team-only
+  if (wantedTeam) {
+    const hitTeam = ids.find((x) => normTeam(idToTeam[x]) === wantedTeam);
+    if (hitTeam) return hitTeam;
+  }
+  // Then pos-only
+  if (wantedPos) {
+    const hitPos = ids.find((x) => idToPos[x] === wantedPos);
+    if (hitPos) return hitPos;
+  }
+  // Fallback to first
+  return ids[0];
 }
 
-// ---------- build ----------
 (async () => {
-  const out = {};            // id -> merged object
-  const posBuckets = {};     // POS -> [{id, rank}] for positionRank calc
-  const misses = { domain:[], factors:[], qb:[], te:[], sf:[] };
+  const out = {};
+  const posBuckets = {};
+  const misses = { domain: [], factors: [], qb: [], te: [], sf: [] };
 
-  // 1) Domain base
-  const domain = await readCSV(FILES.domain);
-  for (const row of domain) {
-    const rawId = String(row['Player_Id'] ?? row['PlayerID'] ?? row['player_id'] ?? '').trim();
-    const name  = String(row['Name'] ?? row['Player'] ?? '').trim();
-    const pos   = String(row['Position'] ?? row['Pos'] ?? '').trim().toUpperCase();
+  // 1) Domain base (now supports both legacy + new lowercase headers)
+  const domainRows = await readCSV(FILES.domain);
+  for (const row of domainRows) {
+    const rawId = String(row['Player_Id'] ?? row['PlayerID'] ?? row['player_id'] ?? row['id'] ?? '').trim();
+    const name  = String(row['Name'] ?? row['Player'] ?? row['name'] ?? '').trim();
+    const pos   = String(row['Position'] ?? row['Pos'] ?? row['position'] ?? '').trim().toUpperCase();
+    const team  = String(row['Team'] ?? row['team'] ?? '').trim();
     const rank  = Number(row['Rank'] ?? row['rank']);
-    if (!name || !Number.isFinite(rank)) continue;
 
-    const id = resolveId(rawId, name, pos);
+    // skip bad rows and rank==0
+    if (!name || !Number.isFinite(rank) || rank === 0) continue;
+
+    let id = resolveId(rawId || null, name, pos, team);
     if (!id) { misses.domain.push(name); continue; }
 
-    const team = idToTeam[id] || null;
+    const teamFinal = idToTeam[id] || (team ? normTeam(team) : null);
     out[id] = {
       ...(out[id] || {}),
       name,
       position: pos || out[id]?.position || idToPos[id] || null,
       rank,
-      positionRank: out[id]?.positionRank ?? null, // assign later
-      value: out[id]?.value ?? null,               // no generic "value" now
-      team,
+      positionRank: out[id]?.positionRank ?? null,
+      value: out[id]?.value ?? null,
+      team: teamFinal,
     };
 
     if (pos) (posBuckets[pos] ||= []).push({ id, rank });
@@ -151,12 +185,7 @@ function resolveId(rawId, name, preferPos) {
       const team = normTeam(r['Team']);
       if (!name) continue;
 
-      let id = resolveId(null, name);
-      if (id && team && idToTeam[id] && normTeam(idToTeam[id]) !== team) {
-        const ids = nameToIds.get(normalize(name)) || [];
-        const cand = ids.find((x) => normTeam(idToTeam[x]) === team);
-        if (cand) id = cand;
-      }
+      let id = resolveId(null, name, null, team);
       if (!id) { misses.factors.push(`${name}${team ? ' ('+team+')' : ''}`); continue; }
 
       const tgt = (out[id] = out[id] || {
@@ -211,15 +240,18 @@ function resolveId(rawId, name, preferPos) {
     }
   }
 
-  // 5) Superflex ranks (optional)
+  // 5) Superflex ranks (optional; force headers to avoid BOM/header mismatch)
+  let sfApplied = 0, sfRows = 0, sfSkippedNoRank = 0;
   if (optional(FILES.superflex)) {
-    const rows = await readCSV(FILES.superflex);
+    const rows = await readSFCsv(FILES.superflex); // -> { Rank, Player, Team }
+    sfRows = rows.length;
     for (const r of rows) {
-      const name = String(r['Player'] ?? r['Name'] ?? '').trim();
-      const rank = Number(r['Rank'] ?? r['rank'] ?? r['Overall']);
-      if (!name || !Number.isFinite(rank)) continue;
+      const name = String(r['Player'] || '').trim();
+      const rank = Number(r['Rank']);
+      const team = normTeam(r['Team']);
+      if (!name || !Number.isFinite(rank)) { sfSkippedNoRank++; continue; }
 
-      const id = resolveId(null, name);
+      let id = resolveId(null, name, null, team);
       if (!id) { misses.sf.push(name); continue; }
 
       const tgt = (out[id] = out[id] || {
@@ -227,10 +259,12 @@ function resolveId(rawId, name, preferPos) {
       });
       tgt['superflex-rank'] = rank;
       if (!tgt.position) tgt.position = idToPos[id] || null;
+      sfApplied++;
     }
+    console.log(`ℹ️  Superflex CSV rows: ${sfRows}, applied: ${sfApplied}, skipped(no rank): ${sfSkippedNoRank}, unmatched: ${misses.sf.length}`);
   }
 
-  // 6) positionRank from Domain’s overall rank
+  // 6) positionRank from Domain rank
   const groups = {};
   for (const [id, p] of Object.entries(out)) {
     const pos = String(p.position || '').toUpperCase();
@@ -245,17 +279,16 @@ function resolveId(rawId, name, preferPos) {
     }
   }
 
-  // 7) final cleanup
+  // 7) finalize & write
   for (const [id, p] of Object.entries(out)) {
     p.name = p.name ?? '';
     p.position = p.position ?? null;
     p.rank = Number.isFinite(p.rank) ? p.rank : (p.rank == null ? null : Number(p.rank));
     p.positionRank = Number.isFinite(p.positionRank) ? p.positionRank : null;
-    p.value = p.value ?? null; // you said: no longer use generic value (kept for compatibility)
+    p.value = p.value ?? null;
     p.team = p.team ? normTeam(p.team) : (idToTeam[id] || null);
   }
 
-  // 8) write (with backup)
   let backup = null;
   if (fs.existsSync(FILES.out)) {
     backup = `${FILES.out}.backup.${Date.now()}.json`;
