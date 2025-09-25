@@ -296,7 +296,7 @@ export default function WeeklyBoard(props) {
         </div>
 
         {/* Week Label */}
-        <div style={{ position:"absolute", top:64, left:698, width:300, zIndex:5 }}>
+        <div style={{ position:"absolute", top:64, left:685, width:300, zIndex:5 }}>
           <WeekLabel week={weekToShow} fontSize={40} color="#000" align="center" width={300} />
         </div>
 
