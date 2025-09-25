@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import gradeData from '../../redraft/players/players-by-id.json';
+import { fetchLeagueRosters } from '../../redraft/sleeper-league/sleeperAPI.js';
 
 export default function TweaksPanel({
   overrides,
@@ -527,7 +529,7 @@ export default function TweaksPanel({
     const color = get(`${base}.color`, '');
     const label = get(`${base}.label`, '');
 
-    const listId = `sw-opts-${index}`;
+  const listId = `sw-opts-${index}`;
     const options = color === 'green'
       ? STRENGTH_OPTIONS
       : color === 'red'
@@ -640,6 +642,59 @@ export default function TweaksPanel({
     { id: 'RB_UPSIDE', label: 'RB UPSIDE' }, // #81c6c9
     { id: 'QB_UPSIDE', label: 'QB UPSIDE' }, // #c15252
     { id: 'TE_UPSIDE', label: 'TE UPSIDE' }, // #f0c05f
+  ];
+
+  /* ------------------ NEW: League free agents for Top Waivers overrides ------------------ */
+  const leagueIdFromUrl = useMemo(
+    () => new URLSearchParams(window.location.search).get('leagueId') || '',
+    []
+  );
+  const [leagueRostered, setLeagueRostered] = useState(new Set());
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      if (!leagueIdFromUrl) { setLeagueRostered(new Set()); return; }
+      try {
+        const rosters = await fetchLeagueRosters(leagueIdFromUrl);
+        if (cancelled) return;
+        const s = new Set();
+        for (const r of rosters || []) for (const pid of r?.players || []) s.add(String(pid));
+        setLeagueRostered(s);
+      } catch {
+        setLeagueRostered(new Set());
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [leagueIdFromUrl]);
+
+  const faOptionsSorted = useMemo(() => {
+    const out = [];
+    for (const [id, p] of Object.entries(playersById || {})) {
+      const pid = String(id);
+      if (leagueRostered.has(pid)) continue; // free agents only
+
+      const pos =
+        (Array.isArray(p.fantasy_positions) && p.fantasy_positions[0]) ||
+        p.position || '';
+      const POS = String(pos).toUpperCase();
+      if (!['QB','RB','WR','TE'].includes(POS)) continue;
+
+      const team = (p.team || p.pro_team || p.team_abbr || '').toUpperCase();
+      const name = p.full_name || `${p.first_name || ''} ${p.last_name || ''}`.trim() || pid;
+
+      const rank = Number(gradeData?.[pid]?.rank ?? Infinity);
+      if (!Number.isFinite(rank)) continue;
+
+      out.push({ id: pid, label: team ? `${name} — ${POS} • ${team}` : `${name} — ${POS}`, rank });
+    }
+    out.sort((a, b) => a.rank - b.rank || a.label.localeCompare(b.label));
+    return out;
+  }, [playersById, leagueRostered]);
+
+  const waiverOverrideIds = [
+    get('topWaivers.overrideIds.0', ''),
+    get('topWaivers.overrideIds.1', ''),
+    get('topWaivers.overrideIds.2', ''),
   ];
 
   return (
@@ -797,6 +852,27 @@ export default function TweaksPanel({
           onCommit={(v)=> set('manualWaivers.label', v)}
           maxLength={40}
         />
+
+        {/* NEW: Top Waivers Overrides (3 dropdowns; league free agents sorted by rank) */}
+        <div className="wb-sep">Top Waivers Overrides</div>
+        <div style={{ gridColumn:'1 / -1', fontSize:12, opacity:.75, margin:'2px 0 8px' }}>
+          Pick exact players to show as <b>#1</b>, <b>#2</b>, <b>#3</b>. List shows <b>league free agents</b> (not on any roster), sorted by your Domain rank.
+        </div>
+        {[0,1,2].map((idx) => (
+          <div key={idx} className="wb-row" style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:8, alignItems:'center' }}>
+            <div style={{ fontWeight:700, opacity:.8 }}>Player {idx + 1}</div>
+            <select
+              value={waiverOverrideIds[idx] || ''}
+              onChange={(e)=> set(`topWaivers.overrideIds.${idx}`, e.target.value || undefined)}
+            >
+              <option value="">Auto</option>
+              {faOptionsSorted.map(opt => (
+                <option key={opt.id} value={opt.id}>{opt.label}</option>
+              ))}
+            </select>
+            <button type="button" className="wb-danger" onClick={()=> set(`topWaivers.overrideIds.${idx}`, undefined)}>Clear</button>
+          </div>
+        ))}
 
         {/* White Box Overlay */}
         <div className="wb-sep">White Box Overlay</div>

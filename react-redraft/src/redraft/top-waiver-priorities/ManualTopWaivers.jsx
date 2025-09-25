@@ -1,119 +1,127 @@
-// /src/redraft/top-waiver-priorities/ManualTopWaivers.jsx
-import React from "react";
-
-/** Presets you can pick in Tweaks (label → color, with a default pos) */
-export const WAIVER_PRESETS = [
-  { id: "RB_UPSIDE", label: "RB UPSIDE", color: "#81c6c9", pos: "RB" },
-  { id: "WR_UPSIDE", label: "WR UPSIDE", color: "#7ab274", pos: "WR" },
-  { id: "QB_UPSIDE", label: "QB UPSIDE", color: "#c15252", pos: "QB" },
-  { id: "TE_UPSIDE", label: "TE UPSIDE", color: "#f0c05f", pos: "TE" },
-];
+// /src/whiteboard-site/components/ManualTopWaivers.jsx
+import React, { useEffect, useMemo, useState } from "react";
+import gradeData from "../../redraft/players/players-by-id.json";
+import { fetchLeagueRosters } from "../../redraft/sleeper-league/sleeperAPI.js";
 
 /**
- * Manual overlay for the Top Waiver area (single square, CSS only).
+ * Manual Top Waivers picker (Tweaks-side)
  *
  * Props:
- *  - enabled?: boolean
- *  - items?: Array<{
- *      preset?: 'RB_UPSIDE'|'WR_UPSIDE'|'QB_UPSIDE'|'TE_UPSIDE'
- *      label?: string           // optional: overrides preset label
- *      pos?: 'QB'|'RB'|'WR'|'TE'// only used if no preset is supplied
- *    }>
- *  - width?: number        (default 560)
- *  - tileHeight?: number   (default 150)  // one auto-tile height
- *  - gap?: number          (default 18)   // gap between auto-tiles
- *  - fontSize?: number     (default 40)
- *  - textScale?: number    (default 1)    // scales ONLY the text, not the square
+ *  - playersById: Record<string, SleeperPlayer>
+ *  - values: [id1?, id2?, id3?]  // current selections (string or '')
+ *  - onChange: (index: 0|1|2, id: string|undefined) => void
+ *  - leagueId?: string            // optional; if not provided, read from URL
  */
 export default function ManualTopWaivers({
-  enabled = true,
-  items = [],
-  width = 560,
-  tileHeight = 150,
-  gap = 18,
-  fontSize = 40,
-  textScale = 1,
+  playersById = {},
+  values = [],
+  onChange,
+  leagueId: leagueIdProp,
 }) {
-  if (!enabled) return null;
+  // use URL leagueId if prop not passed
+  const leagueId =
+    leagueIdProp ||
+    new URLSearchParams(window.location.search).get("leagueId") ||
+    "";
 
-  const norm = (s) => String(s || "").trim().replace(/\s+/g, " ").toUpperCase();
+  const [rostered, setRostered] = useState(() => new Set());
 
-  const fallbackColorForPos = (pos) => {
-    const P = String(pos || "").toUpperCase();
-    if (P === "QB") return "#c15252";
-    if (P === "RB") return "#81c6c9";
-    if (P === "WR") return "#7ab274";
-    if (P === "TE") return "#f0c05f";
-    return "#A6A6BD";
-  };
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      if (!leagueId) {
+        setRostered(new Set());
+        return;
+      }
+      try {
+        const rosters = await fetchLeagueRosters(leagueId);
+        if (cancelled) return;
+        const s = new Set();
+        for (const r of rosters || []) {
+          for (const pid of r?.players || []) s.add(String(pid));
+        }
+        setRostered(s);
+      } catch {
+        setRostered(new Set());
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [leagueId]);
 
-  const presetFrom = (item) => {
-    const byId = WAIVER_PRESETS.find(
-      (p) => p.id === String(item?.preset || "").toUpperCase()
-    );
-    if (byId) return byId;
+  // FA options = players not on ANY roster; only QB/RB/WR/TE; sort by Domain rank (lower=better)
+  const faOptions = useMemo(() => {
+    const out = [];
+    for (const [id, p] of Object.entries(playersById || {})) {
+      const pid = String(id);
+      if (rostered.has(pid)) continue; // only free agents
 
-    const byLabel = WAIVER_PRESETS.find((p) => p.label === norm(item?.label));
-    if (byLabel) return byLabel;
+      const pos =
+        (Array.isArray(p.fantasy_positions) && p.fantasy_positions[0]) ||
+        p.position || "";
+      const POS = String(pos).toUpperCase();
+      if (!["QB", "RB", "WR", "TE"].includes(POS)) continue;
 
-    const pos = String(item?.pos || "").toUpperCase();
-    if (pos) {
-      const byPos = WAIVER_PRESETS.find((p) => p.pos === pos);
-      if (byPos) return byPos;
+      const team = String(p.team || p.pro_team || p.team_abbr || "").toUpperCase();
+      const name =
+        p.full_name || `${p.first_name || ""} ${p.last_name || ""}`.trim() || pid;
+
+      const rank = Number(gradeData?.[pid]?.rank ?? Infinity);
+      if (!Number.isFinite(rank)) continue; // must have a domain rank
+
+      out.push({
+        id: pid,
+        label: team ? `${name} — ${POS} • ${team}` : `${name} — ${POS}`,
+        rank,
+      });
     }
-    return null;
-  };
+    out.sort((a, b) => a.rank - b.rank || a.label.localeCompare(b.label));
+    return out;
+  }, [playersById, rostered]);
 
-  // Resolve from first item (or default to WR)
-  const raw = items[0] || { preset: "WR_UPSIDE" };
-  const preset = presetFrom(raw);
-  const color = preset ? preset.color : fallbackColorForPos(raw.pos);
-  const label = norm(raw?.label || preset?.label || raw?.pos || "UPSIDE");
+  const picks = [values[0] || "", values[1] || "", values[2] || ""];
 
-  // Height sized to match three stacked auto-tiles (tileHeight*3 + gap*2)
-  const combinedHeight = tileHeight * 3 + gap * 2;
-
-  const wrap = {
-    position: "relative",
-    width,
-    height: combinedHeight,
-    borderRadius: 16,
-    border: "4px solid #2D2D2C",
-    overflow: "hidden",
-    background: color,
-    boxShadow: "0 6px 14px rgba(0,0,0,.12)",
-  };
-
-  const content = {
-    position: "absolute",
-    inset: 0,
-    display: "grid",
-    placeItems: "center",
-    padding: "0 20px",
-    textAlign: "center",
-  };
-
-  const text = {
-    fontFamily: "'Prohibition', sans-serif",
-    fontWeight: 900,
-    fontSize,              // base size
-    letterSpacing: 0.6,
-    color: "#2D2D2C",
-    textTransform: "uppercase",
-    textShadow:
-      color.toLowerCase() === "#f0c05f" || color.toLowerCase() === "#81c6c9"
-        ? "0 1px 0 rgba(0,0,0,.08)"
-        : "none",
-    transform: `scale(${textScale})`,      // ONLY scales the text
-    transformOrigin: "center",
-    willChange: "transform",
-  };
+  const Row = ({ index }) => (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        gap: 8,
+        alignItems: "center",
+      }}
+    >
+      <div style={{ fontWeight: 700, opacity: 0.8 }}>Player {index + 1}</div>
+      <select
+        value={picks[index]}
+        onChange={(e) => onChange?.(index, e.target.value || undefined)}
+      >
+        <option value="">Auto</option>
+        {faOptions.map((o) => (
+          <option key={o.id} value={o.id}>{o.label}</option>
+        ))}
+      </select>
+      <button
+        type="button"
+        className="wb-danger"
+        onClick={() => onChange?.(index, undefined)}
+      >
+        Clear
+      </button>
+    </div>
+  );
 
   return (
-    <div style={wrap}>
-      <div style={content}>
-        <div style={text}>{label}</div>
+    <>
+      <div className="wb-sep">Top Waivers Overrides</div>
+      <div
+        className="wb-row"
+        style={{ gridColumn: "1 / -1", fontSize: 12, opacity: 0.75, margin: "2px 0 8px" }}
+      >
+        Pick exact players to show as <b>#1</b>, <b>#2</b>, <b>#3</b>.
+        List shows <b>league free agents</b> (not on any roster), sorted by your rank.
       </div>
-    </div>
+      <Row index={0} />
+      <Row index={1} />
+      <Row index={2} />
+    </>
   );
 }
