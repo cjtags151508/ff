@@ -12,7 +12,7 @@ import OPP_GREEN      from "./lights/opponent-green.png";
 import OPP_YELLOW     from "./lights/opponent-yellow.png";
 import OPP_RED        from "./lights/opponent-red.png";
 
-const CATS = ["matchup", "vegas", "offense"];
+const CATS = ["matchup", "offense", "vegas"];
 
 /* Name normalizer for name-based rank/lights fallbacks */
 const HYPHENS = /[\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2043\uFE58\uFE63\uFF0D-]/g;
