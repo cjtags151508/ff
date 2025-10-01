@@ -343,6 +343,7 @@ export default function WeeklyBoard(props) {
               rankNameMap={rankNameMap}
               lightsOverride={lightsById}
               lightsByName={lightsByName}
+              leftGuardPx={68}
             />
           )}
         </div>
