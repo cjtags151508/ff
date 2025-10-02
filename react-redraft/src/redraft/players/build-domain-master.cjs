@@ -20,7 +20,7 @@ const DIR = __dirname;
 const FILES = {
   players:   path.join(DIR, 'players.json'),
   out:       path.join(DIR, 'players-by-id.json'),
-  domain:    path.join(DIR, 'ranks-9-25.csv'),            // <-- NEW lowercase CSV
+  domain:    path.join(DIR, 'ranks-10-2.csv'),            // <-- NEW lowercase CSV
   factors:   path.join(DIR, 'players-4-factors.csv'),
   qbScores:  path.join(DIR, 'rankings-qb.csv'),
   teValues:  path.join(DIR, 'rankings-te.csv'),

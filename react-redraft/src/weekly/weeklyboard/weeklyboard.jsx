@@ -330,7 +330,7 @@ export default function WeeklyBoard(props) {
         </div>
 
         {/* Starters (uses lights & ranks; rows will use name fallback) */}
-        <div style={{ position:"absolute", top:280, left:-60, width:600, transform:"scale(1.2)", transformOrigin:"top left", zIndex:4 }}>
+        <div style={{ position:"absolute", top:280, left:-80, width:600, transform:"scale(1.2)", transformOrigin:"top left", zIndex:4 }}>
           {!loading && !error && (
             <StartersWeekly
               lineup={lineup}
@@ -343,7 +343,7 @@ export default function WeeklyBoard(props) {
               rankNameMap={rankNameMap}
               lightsOverride={lightsById}
               lightsByName={lightsByName}
-              leftGuardPx={68}
+              leftGuardPx={60}
             />
           )}
         </div>
