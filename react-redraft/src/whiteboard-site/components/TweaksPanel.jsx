@@ -302,8 +302,7 @@ export default function TweaksPanel({
     if (!parts.length) return undefined;
 
     const maybeTeam = parts[parts.length - 1]?.toUpperCase();
-    the_return: {
-    }
+    the_return: { }
     const maybePos  = parts[parts.length - 2]?.toUpperCase();
     const posIsKnown = ['QB','RB','WR','TE'].includes(maybePos);
     const name = parts.slice(0, parts.length - (posIsKnown ? 2 : 1)).join(' ').trim();
@@ -339,6 +338,57 @@ export default function TweaksPanel({
           {options.map(opt => <option key={opt} value={opt} />)}
         </datalist>
       </div>
+    );
+  }
+
+  /* ====== NEW: Combobox for Top Waivers (type-to-search + dropdown) ====== */
+  function WaiverCombo({ value, options, onChange, placeholder = "Type to search…" }) {
+    // value is a player id (string or '')
+    const idToLabel = useMemo(() => {
+      const map = new Map();
+      for (const opt of options || []) map.set(String(opt.id), opt.label);
+      return map;
+    }, [options]);
+
+    const [local, setLocal] = useState(value ? (idToLabel.get(String(value)) || "") : "");
+    useEffect(() => {
+      setLocal(value ? (idToLabel.get(String(value)) || "") : "");
+    }, [value, idToLabel]);
+
+    const commit = () => {
+      const txt = (local || "").trim().toLowerCase();
+      if (!txt) { onChange?.(undefined); return; }
+      // exact label match
+      const hit = (options || []).find(o => o.label.toLowerCase() === txt);
+      if (hit) { onChange?.(String(hit.id)); return; }
+      // allow direct id paste
+      const byId = (options || []).find(o => String(o.id) === local.trim());
+      if (byId) { onChange?.(String(byId.id)); return; }
+      onChange?.(undefined);
+    };
+
+    const listId = useMemo(() => `waivers-list-${Math.random().toString(36).slice(2)}`, []);
+    const onKeyDown = (e) => { if (e.key === "Enter") { e.preventDefault(); commit(); } };
+
+    return (
+      <>
+        <input
+          list={listId}
+          value={local}
+          onChange={(e)=> setLocal(e.target.value)}
+          onBlur={commit}
+          onKeyDown={onKeyDown}
+          placeholder={placeholder}
+          style={{ width: "100%" }}
+          autoComplete="off"
+          spellCheck={false}
+        />
+        <datalist id={listId}>
+          {(options || []).map(opt => (
+            <option key={opt.id} value={opt.label} />
+          ))}
+        </datalist>
+      </>
     );
   }
 
@@ -457,7 +507,6 @@ export default function TweaksPanel({
           <div style={{ fontWeight: 700, marginBottom: 6 }}>Recommendation A (choose player)</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
             {playerField(get(`${base}.recs.0`, ''), (v) => {
-              // normalize recs array
               const cur = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
               cur[0] = v;
               const clean = cur.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
@@ -529,7 +578,7 @@ export default function TweaksPanel({
     const color = get(`${base}.color`, '');
     const label = get(`${base}.label`, '');
 
-  const listId = `sw-opts-${index}`;
+    const listId = `sw-opts-${index}`;
     const options = color === 'green'
       ? STRENGTH_OPTIONS
       : color === 'red'
@@ -644,7 +693,7 @@ export default function TweaksPanel({
     { id: 'TE_UPSIDE', label: 'TE UPSIDE' }, // #f0c05f
   ];
 
-  /* ------------------ NEW: League free agents for Top Waivers overrides ------------------ */
+  /* ------------------ League free agents for Top Waivers overrides ------------------ */
   const leagueIdFromUrl = useMemo(
     () => new URLSearchParams(window.location.search).get('leagueId') || '',
     []
@@ -853,23 +902,29 @@ export default function TweaksPanel({
           maxLength={40}
         />
 
-        {/* NEW: Top Waivers Overrides (3 dropdowns; league free agents sorted by rank) */}
+        {/* NEW: Top Waivers Overrides (3 comboboxes; type + choose; stores player id) */}
         <div className="wb-sep">Top Waivers Overrides</div>
         <div style={{ gridColumn:'1 / -1', fontSize:12, opacity:.75, margin:'2px 0 8px' }}>
           Pick exact players to show as <b>#1</b>, <b>#2</b>, <b>#3</b>. List shows <b>league free agents</b> (not on any roster), sorted by your Domain rank.
         </div>
+
         {[0,1,2].map((idx) => (
           <div key={idx} className="wb-row" style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:8, alignItems:'center' }}>
             <div style={{ fontWeight:700, opacity:.8 }}>Player {idx + 1}</div>
-            <select
-              value={waiverOverrideIds[idx] || ''}
-              onChange={(e)=> set(`topWaivers.overrideIds.${idx}`, e.target.value || undefined)}
-            >
-              <option value="">Auto</option>
-              {faOptionsSorted.map(opt => (
-                <option key={opt.id} value={opt.id}>{opt.label}</option>
-              ))}
-            </select>
+
+            {/* <= replaced <select> with combobox */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 6 }}>
+              <WaiverCombo
+                value={waiverOverrideIds[idx] || ''}
+                options={faOptionsSorted}
+                onChange={(id) => set(`topWaivers.overrideIds.${idx}`, id || undefined)}
+                placeholder="Type name, then choose…"
+              />
+              <div style={{ fontSize: 11, opacity: 0.65 }}>
+                Tip: start typing to filter; choose a suggestion or press Enter.
+              </div>
+            </div>
+
             <button type="button" className="wb-danger" onClick={()=> set(`topWaivers.overrideIds.${idx}`, undefined)}>Clear</button>
           </div>
         ))}
