@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import gradeData from '../../redraft/players/players-by-id.json';
-import { fetchLeagueRosters, getLeagueSettings } from '../../redraft/sleeper-league/sleeperAPI.js';
+import { fetchLeagueRosters } from '../../redraft/sleeper-league/sleeperAPI.js';
 
 export default function TweaksPanel({
   overrides,
@@ -302,6 +302,8 @@ export default function TweaksPanel({
     if (!parts.length) return undefined;
 
     const maybeTeam = parts[parts.length - 1]?.toUpperCase();
+    the_return: {
+    }
     const maybePos  = parts[parts.length - 2]?.toUpperCase();
     const posIsKnown = ['QB','RB','WR','TE'].includes(maybePos);
     const name = parts.slice(0, parts.length - (posIsKnown ? 2 : 1)).join(' ').trim();
@@ -340,54 +342,6 @@ export default function TweaksPanel({
     );
   }
 
-  /* ====== Combobox for Top Waivers ====== */
-  function WaiverCombo({ value, options, onChange, placeholder = "Type to search…" }) {
-    const idToLabel = useMemo(() => {
-      const map = new Map();
-      for (const opt of options || []) map.set(String(opt.id), opt.label);
-      return map;
-    }, [options]);
-
-    const [local, setLocal] = useState(value ? (idToLabel.get(String(value)) || "") : "");
-    useEffect(() => {
-      setLocal(value ? (idToLabel.get(String(value)) || "") : "");
-    }, [value, idToLabel]);
-
-    const commit = () => {
-      const txt = (local || "").trim().toLowerCase();
-      if (!txt) { onChange?.(undefined); return; }
-      const hit = (options || []).find(o => o.label.toLowerCase() === txt);
-      if (hit) { onChange?.(String(hit.id)); return; }
-      const byId = (options || []).find(o => String(o.id) === local.trim());
-      if (byId) { onChange?.(String(byId.id)); return; }
-      onChange?.(undefined);
-    };
-
-    const listId = useMemo(() => `waivers-list-${Math.random().toString(36).slice(2)}`, []);
-    const onKeyDown = (e) => { if (e.key === "Enter") { e.preventDefault(); commit(); } };
-
-    return (
-      <>
-        <input
-          list={listId}
-          value={local}
-          onChange={(e)=> setLocal(e.target.value)}
-          onBlur={commit}
-          onKeyDown={onKeyDown}
-          placeholder={placeholder}
-          style={{ width: "100%" }}
-          autoComplete="off"
-          spellCheck={false}
-        />
-        <datalist id={listId}>
-          {(options || []).map(opt => (
-            <option key={opt.id} value={opt.label} />
-          ))}
-        </datalist>
-      </>
-    );
-  }
-
   /* ============================ SW options ============================ */
   const STRENGTH_OPTIONS = [
     'Best WR Room In The League','Best RB Room In The League','Best TE Room In The League','Best QB Room In The League',
@@ -398,6 +352,213 @@ export default function TweaksPanel({
     'Weak WR Room','Weak RB Room','Low Upside','High Risk','Weak TE Room','Weak QB Room','Weak Reliability','Weak Depth',
     'Changes are Necessary to Compete',
   ];
+
+  /* ============================ Roster Tag options ============================ */
+  const ROSTER_TAG_OPTIONS = [
+    'The Juggernaut','Riskit For Biskit','Safe And Sound','Balanced Approach','Wi Tu Lo','Mariana Trench','Star Studded',
+  ];
+
+  /* ============================ Moves editor (unchanged) ============================ */
+  const LABEL_OPTIONS = ['TRADE', 'UPTIER', 'PIVOT'];
+  const MoveCardEditor = ({ moveId, title }) => {
+    const base = `moves.${moveId}`;
+    const label   = get(`${base}.label`, '');
+    const primary = get(`${base}.primary`, '');
+    const rec0    = get(`${base}.recs.0`, '');
+    const rec1    = get(`${base}.recs.1`, '');
+    const note    = get(`${base}.note`, '');
+
+    const setRec = (idx, val) => {
+      const a = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
+      a[idx] = val;
+      const clean = a.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+      set(`${base}.recs`, clean.length ? clean : undefined);
+
+      const ids = [get(`${base}.recsIds.0`, undefined), get(`${base}.recsIds.1`, undefined)];
+      ids[idx] = resolveIdFromCommitString(val);
+      const idClean = ids.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+      set(`${base}.recsIds`, idClean.length ? idClean : undefined);
+    };
+
+    const defaultLabel = moveId === 'trade' ? 'TRADE' : moveId === 'uptier' ? 'UPTIER' : 'PIVOT';
+
+    const primaryField = () => {
+      if (rosterOptions.length > 0) {
+        const normalizedPrimary = get(`${base}.primary`, '');
+        const valueIsOption = rosterOptions.some(o => o.value === normalizedPrimary);
+        const selected = valueIsOption ? normalizedPrimary : '';
+        return (
+          <select
+            value={selected}
+            onChange={(e) => {
+              const val = e.target.value || undefined;
+              set(`${base}.primary`, val);
+              const opt = rosterOptions.find(o => o.value === val);
+              set(`${base}.primaryId`, opt?.id || undefined);
+            }}
+          >
+            <option value="">— Select player from your roster —</option>
+            {rosterOptions.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        );
+      }
+      return (
+        <PlayerAutocomplete
+          value={get(`${base}.primary`, '')}
+          placeholder="start typing a player…"
+          onCommit={(v) => {
+            set(`${base}.primary`, v);
+            set(`${base}.primaryId`, resolveIdFromCommitString(v));
+          }}
+          maxResults={14}
+        />
+      );
+    };
+
+    const playerField = (value, onCommit) => {
+      const hasPlayers = playersById && Object.keys(playersById).length > 0;
+      return hasPlayers ? (
+        <PlayerAutocomplete value={value} placeholder="start typing a player…" onCommit={onCommit} maxResults={14} />
+      ) : (
+        <TextInput value={value} placeholder="type player name…" onCommit={onCommit} maxLength={64} />
+      );
+    };
+
+    return (
+      <div className="wb-card" style={{ padding: 12, overflow: 'visible' }}>
+        <div className="wb-card__title" style={{ marginBottom: 8 }}>{title}</div>
+
+        <div className="wb-row" style={{ marginBottom: 8 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Column Label</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
+            <select
+              value={(label || defaultLabel).toUpperCase()}
+              onChange={(e) => set(`${base}.label`, e.target.value.toUpperCase())}
+            >
+              {LABEL_OPTIONS.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+            <ClearBtn onClick={() => set(`${base}.label`, undefined)} />
+          </div>
+        </div>
+
+        <div className="wb-row" style={{ marginBottom: 8 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Primary (pick from your roster)</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
+            {primaryField()}
+            <ClearBtn onClick={() => { set(`${base}.primary`, undefined); set(`${base}.primaryId`, undefined); }} />
+          </div>
+        </div>
+
+        <div className="wb-row" style={{ marginBottom: 8 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Recommendation A (choose player)</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
+            {playerField(get(`${base}.recs.0`, ''), (v) => {
+              // normalize recs array
+              const cur = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
+              cur[0] = v;
+              const clean = cur.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recs`, clean.length ? clean : undefined);
+
+              const ids = [get(`${base}.recsIds.0`, undefined), get(`${base}.recsIds.1`, undefined)];
+              ids[0] = resolveIdFromCommitString(v);
+              const idClean = ids.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recsIds`, idClean.length ? idClean : undefined);
+            })}
+            <ClearBtn onClick={() => {
+              const cur = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
+              cur[0] = undefined;
+              const clean = cur.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recs`, clean.length ? clean : undefined);
+
+              const ids = [get(`${base}.recsIds.0`, undefined), get(`${base}.recsIds.1`, undefined)];
+              ids[0] = undefined;
+              const idClean = ids.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recsIds`, idClean.length ? idClean : undefined);
+            }} />
+          </div>
+        </div>
+
+        <div className="wb-row">
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Recommendation B (choose player)</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
+            {playerField(get(`${base}.recs.1`, ''), (v) => {
+              const cur = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
+              cur[1] = v;
+              const clean = cur.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recs`, clean.length ? clean : undefined);
+
+              const ids = [get(`${base}.recsIds.0`, undefined), get(`${base}.recsIds.1`, undefined)];
+              ids[1] = resolveIdFromCommitString(v);
+              const idClean = ids.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recsIds`, idClean.length ? idClean : undefined);
+            })}
+            <ClearBtn onClick={() => {
+              const cur = [get(`${base}.recs.0`, undefined), get(`${base}.recs.1`, undefined)];
+              cur[1] = undefined;
+              const clean = cur.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recs`, clean.length ? clean : undefined);
+
+              const ids = [get(`${base}.recsIds.0`, undefined), get(`${base}.recsIds.1`, undefined)];
+              ids[1] = undefined;
+              const idClean = ids.filter((x, i, ar) => x !== undefined || i < ar.length - 1);
+              set(`${base}.recsIds`, idClean.length ? idClean : undefined);
+            }} />
+          </div>
+        </div>
+
+        <div className="wb-row" style={{ marginTop: 10 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Option / Note</div>
+          <TextInput
+            value={get(`${base}.note`, '')}
+            placeholder="e.g., Package WR2 + RB4 for elite TE; or flip TE for WR upgrade"
+            onCommit={(v) => set(`${base}.note`, v)}
+            maxLength={200}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  /* ============================ Badges (dropdown + free-typing) ============================ */
+  const SWRow = ({ index }) => {
+    const base  = `rosterStrengths.items.${index}`;
+    const color = get(`${base}.color`, '');
+    const label = get(`${base}.label`, '');
+
+  const listId = `sw-opts-${index}`;
+    const options = color === 'green'
+      ? STRENGTH_OPTIONS
+      : color === 'red'
+        ? WEAKNESS_OPTIONS
+        : [...STRENGTH_OPTIONS, ...WEAKNESS_OPTIONS];
+
+    return (
+      <div className="wb-row sw-row" style={{ display:'grid', gridTemplateColumns:'auto 1fr 2fr auto', gap:8, alignItems:'center' }}>
+        <div style={{ fontWeight:700, opacity:.8 }}>Badge {index + 1}</div>
+
+        <select value={color} onChange={(e) => set(`${base}.color`, e.target.value || undefined)}>
+          <option value="">Auto</option>
+          <option value="green">Strength (Green)</option>
+          <option value="red">Weakness (Red)</option>
+        </select>
+
+        <LabelCombo
+          value={label}
+          onCommit={(v) => set(`${base}.label`, v)}
+          options={options}
+          listId={listId}
+          placeholder="Select or type a label…"
+          maxLength={40}
+        />
+
+        <button onClick={() => set(base, undefined)} className="wb-danger" type="button">Clear</button>
+      </div>
+    );
+  };
 
   /* ======================== Manual Roster (unchanged) ======================== */
   const ManualRosterSection = () => {
@@ -477,13 +638,13 @@ export default function TweaksPanel({
 
   /* --------- PRESETS for Manual Waivers (single tile) --------- */
   const WAIVER_PRESETS = [
-    { id: 'WR_UPSIDE', label: 'WR UPSIDE' },
-    { id: 'RB_UPSIDE', label: 'RB UPSIDE' },
-    { id: 'QB_UPSIDE', label: 'QB UPSIDE' },
-    { id: 'TE_UPSIDE', label: 'TE UPSIDE' },
+    { id: 'WR_UPSIDE', label: 'WR UPSIDE' }, // #7ab274
+    { id: 'RB_UPSIDE', label: 'RB UPSIDE' }, // #81c6c9
+    { id: 'QB_UPSIDE', label: 'QB UPSIDE' }, // #c15252
+    { id: 'TE_UPSIDE', label: 'TE UPSIDE' }, // #f0c05f
   ];
 
-  /* ------------------ League free agents for Top Waivers overrides ------------------ */
+  /* ------------------ NEW: League free agents for Top Waivers overrides ------------------ */
   const leagueIdFromUrl = useMemo(
     () => new URLSearchParams(window.location.search).get('leagueId') || '',
     []
@@ -510,7 +671,7 @@ export default function TweaksPanel({
     const out = [];
     for (const [id, p] of Object.entries(playersById || {})) {
       const pid = String(id);
-      if (leagueRostered.has(pid)) continue;
+      if (leagueRostered.has(pid)) continue; // free agents only
 
       const pos =
         (Array.isArray(p.fantasy_positions) && p.fantasy_positions[0]) ||
@@ -536,139 +697,6 @@ export default function TweaksPanel({
     get('topWaivers.overrideIds.2', ''),
   ];
 
-  /* ========================== Manual Starters ========================== */
-
-  // effective counts from overrides with fallback to fetched league settings (via leagueId in URL)
-  const [leagueCounts, setLeagueCounts] = useState({
-    qb: 1, rb: 2, wr: 2, te: 1, flex: 2, sflex: 0, bench: 2,
-  });
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      if (!leagueIdFromUrl) return;
-      try {
-        const s = await getLeagueSettings(leagueIdFromUrl);
-        if (cancelled || !s?.positions) return;
-        setLeagueCounts({
-          qb:    Number(s.positions.qb   ?? 1),
-          rb:    Number(s.positions.rb   ?? 2),
-          wr:    Number(s.positions.wr   ?? 2),
-          te:    Number(s.positions.te   ?? 1),
-          flex:  Number(s.positions.flex ?? 2),
-          sflex: Number(s.positions.sf   ?? s.positions.sflex ?? 0),
-          bench: Number(s.positions.bench ?? 2),
-        });
-      } catch {/* ignore */}
-    })();
-    return () => { cancelled = true; };
-  }, [leagueIdFromUrl]);
-
-  const effPos = {
-    qb:    Math.max(0, Number(get('leagueSettings.positions.qb',    leagueCounts.qb))),
-    rb:    Math.max(0, Number(get('leagueSettings.positions.rb',    leagueCounts.rb))),
-    wr:    Math.max(0, Number(get('leagueSettings.positions.wr',    leagueCounts.wr))),
-    te:    Math.max(0, Number(get('leagueSettings.positions.te',    leagueCounts.te))),
-    flex:  Math.max(0, Number(get('leagueSettings.positions.flex',  leagueCounts.flex))),
-    sflex: Math.max(0, Number(get('leagueSettings.positions.sf',    leagueCounts.sflex))),
-    bench: Math.max(0, Number(get('leagueSettings.positions.bench', leagueCounts.bench))),
-  };
-
-  const posOf = (p) => {
-    const fp = Array.isArray(p?.fantasy_positions) ? p.fantasy_positions[0] : undefined;
-    return String(p?.position || fp || '').toUpperCase();
-  };
-  const eligibleForSlot = (slot, p) => {
-    const POS = posOf(p);
-    if (slot === 'QB')   return POS === 'QB';
-    if (slot === 'RB')   return POS === 'RB';
-    if (slot === 'WR')   return POS === 'WR';
-    if (slot === 'TE')   return POS === 'TE';
-    if (slot === 'FLEX') return POS === 'RB' || POS === 'WR' || POS === 'TE';
-    if (slot === 'SFLEX')return POS === 'QB' || POS === 'RB' || POS === 'WR' || POS === 'TE';
-    if (slot === 'BN')   return ['QB','RB','WR','TE'].includes(POS);
-    return false;
-  };
-
-  const rosterDropdownBySlot = useMemo(() => {
-    const pools = { QB: [], RB: [], WR: [], TE: [], FLEX: [], SFLEX: [], BN: [] };
-    const add = (slot, id, label, sort) => pools[slot].push({ id, label, sort });
-
-    for (const id of rosterIds || []) {
-      const p = playersById?.[id];
-      if (!p) continue;
-      const POS  = posOf(p);
-      const team = (p.team || p.pro_team || p.team_abbr || '').toUpperCase();
-      const name = p.full_name || `${p.first_name || ''} ${p.last_name || ''}`.trim() || id;
-      const label = team ? `${name} — ${POS} • ${team}` : `${name} — ${POS}`;
-      const sort  = Number(gradeData?.[String(id)]?.rank ?? 99999);
-
-      if (eligibleForSlot('QB', p))    add('QB',    String(id), label, sort);
-      if (eligibleForSlot('RB', p))    add('RB',    String(id), label, sort);
-      if (eligibleForSlot('WR', p))    add('WR',    String(id), label, sort);
-      if (eligibleForSlot('TE', p))    add('TE',    String(id), label, sort);
-      if (eligibleForSlot('FLEX', p))  add('FLEX',  String(id), label, sort);
-      if (eligibleForSlot('SFLEX', p)) add('SFLEX', String(id), label, sort);
-      if (eligibleForSlot('BN', p))    add('BN',    String(id), label, sort);
-    }
-    for (const k of Object.keys(pools)) pools[k].sort((a,b)=> a.sort - b.sort || a.label.localeCompare(b.label));
-    return pools;
-  }, [rosterIds, playersById]);
-
-  const msEnabled = !!get('manualStarters.enabled', false);
-
-  const dynamicSlots = useMemo(() => {
-    const out = [];
-    const pushN = (base, n) => { for (let i=1; i<=n; i++) out.push({ slot: base, idx:i }); };
-    pushN('QB',   effPos.qb);
-    pushN('RB',   effPos.rb);
-    pushN('WR',   effPos.wr);
-    pushN('TE',   effPos.te);
-    pushN('SFLEX',effPos.sflex);
-    pushN('FLEX', effPos.flex);
-    pushN('BN',   effPos.bench);
-    return out;
-  }, [effPos.qb, effPos.rb, effPos.wr, effPos.te, effPos.sflex, effPos.flex, effPos.bench]);
-
-  const slotLabel = ({slot, idx}) => {
-    if (slot === 'QB' && effPos.qb === 1) return 'QB';
-    if (slot === 'TE' && effPos.te === 1) return 'TE';
-    if (slot === 'RB' || slot === 'WR' || slot === 'FLEX' || slot === 'SFLEX' || slot === 'BN') return `${slot}${idx}`;
-    return `${slot}${idx}`;
-  };
-  const slotPath  = ({slot, idx}) => {
-    if (slot === 'QB' && effPos.qb === 1) return 'manualStarters.qb';
-    if (slot === 'TE' && effPos.te === 1) return 'manualStarters.te';
-    return `manualStarters.${slot.toLowerCase()}${idx}`;
-  };
-
-  const SlotSelect = ({ slotDef }) => {
-    const { slot, idx } = slotDef;
-    const label = slotLabel(slotDef);
-    const path  = slotPath(slotDef);
-    const pool =
-      slot === 'QB'    ? rosterDropdownBySlot.QB    :
-      slot === 'RB'    ? rosterDropdownBySlot.RB    :
-      slot === 'WR'    ? rosterDropdownBySlot.WR    :
-      slot === 'TE'    ? rosterDropdownBySlot.TE    :
-      slot === 'FLEX'  ? rosterDropdownBySlot.FLEX  :
-      slot === 'SFLEX' ? rosterDropdownBySlot.SFLEX :
-                         rosterDropdownBySlot.BN;
-
-    const val = get(path, '');
-    return (
-      <div className="wb-row" style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:8, alignItems:'center' }}>
-        <div style={{ fontWeight:700, opacity:.8, minWidth:60 }}>{label}</div>
-        <select value={val || ''} onChange={(e)=> set(path, e.target.value || undefined)} disabled={!msEnabled}>
-          <option value="">— Auto —</option>
-          {pool.map(opt => (<option key={opt.id} value={opt.id}>{opt.label}</option>))}
-        </select>
-        <button type="button" className="wb-danger" onClick={()=> set(path, undefined)} disabled={!msEnabled}>Clear</button>
-      </div>
-    );
-  };
-
-  /* ============================ UI ============================ */
   return (
     <div className="wb-tweaks">
       <div className="wb-grid">
@@ -680,7 +708,7 @@ export default function TweaksPanel({
         <LabelCombo
           value={get('rosterTag', '')}
           onCommit={(v) => set('rosterTag', v)}
-          options={['The Juggernaut','Riskit For Biskit','Safe And Sound','Balanced Approach','Wi Tu Lo','Mariana Trench','Star Studded']}
+          options={ROSTER_TAG_OPTIONS}
           listId="roster-tag-options"
           placeholder="Select or type a roster tag…"
           maxLength={40}
@@ -690,11 +718,11 @@ export default function TweaksPanel({
         <div className="wb-sep">Board Background</div>
         <div style={{ display:'flex', gap:16, alignItems:'center' }}>
           <label style={{ display:'inline-flex', gap:6, alignItems:'center' }}>
-            <input type="checkbox" checked={get('background.variant','wb1') === 'wb1'} onChange={(e)=> set('background.variant', e.target.checked ? 'wb1' : undefined)} />
+            <input type="checkbox" checked={bgVariant === 'wb1'} onChange={(e)=> setBgExclusive('wb1', e.target.checked)} />
             <span>Classic (WB-Base.png)</span>
           </label>
           <label style={{ display:'inline-flex', gap:6, alignItems:'center' }}>
-            <input type="checkbox" checked={get('background.variant','wb1') === 'wb2'} onChange={(e)=> set('background.variant', e.target.checked ? 'wb2' : undefined)} />
+            <input type="checkbox" checked={bgVariant === 'wb2'} onChange={(e)=> setBgExclusive('wb2', e.target.checked)} />
             <span>Alternate (WB2-base.png)</span>
           </label>
         </div>
@@ -704,12 +732,22 @@ export default function TweaksPanel({
         <label>Teams</label>{numInput(get('leagueSettings.teams', null), 'leagueSettings.teams', { min:2, max:20 })}
         <label>PPR Scoring</label>
         <div style={{ display:'grid', gridTemplateColumns:'auto 1fr', alignItems:'center', gap:8 }}>
-          <input type="checkbox" checked={!!get('leagueSettings.ppr', false)} onChange={(e)=> set('leagueSettings.ppr', e.target.checked || undefined)} />
+          <input
+            type="checkbox"
+            checked={!!get('leagueSettings.ppr', false)}
+            onChange={(e)=> set('leagueSettings.ppr', e.target.checked || undefined)}
+          />
           <span style={{ fontSize:12, opacity:.7 }}>If unchecked, treated as Standard</span>
         </div>
 
+        {/* NEW: Scoring (label/value) */}
         <label>Scoring (label/value)</label>
-        <TextInput value={get('leagueSettings.scoring', '')} placeholder="e.g., PPR, STD, 0.5" onCommit={(v)=> set('leagueSettings.scoring', v)} maxLength={12} />
+        <TextInput
+          value={get('leagueSettings.scoring', '')}
+          placeholder="e.g., PPR, STD, 0.5"
+          onCommit={(v)=> set('leagueSettings.scoring', v)}
+          maxLength={12}
+        />
 
         <label>TE Premium (points)</label>{numInput(get('leagueSettings.tepValue', null), 'leagueSettings.tepValue', { min:0, max:5, step:0.1 })}
 
@@ -744,25 +782,16 @@ export default function TweaksPanel({
         <label>WR</label>{numInput(get('positionalGrades.WR', null), 'positionalGrades.WR')}
         <label>TE</label>{numInput(get('positionalGrades.TE', null), 'positionalGrades.TE')}
 
-        {/* ========= Manual Starters ========= */}
-        <div className="wb-sep">Manual Starters (two-column)</div>
-        <label>Enable manual starters</label>
-        <div style={{ display:'grid', gridTemplateColumns:'auto 1fr', gap:8, alignItems:'center' }}>
-          <input type="checkbox" checked={msEnabled} onChange={(e)=> set('manualStarters.enabled', e.target.checked || undefined)} />
-          <span style={{ fontSize:12, opacity:.7 }}>When ON, the board can use these selections to set the lineup.</span>
+        {/* Roster Strengths & Weaknesses (manual overrides) */}
+        <div className="wb-sep">Roster Strengths &amp; Weaknesses</div>
+        <div className="wb-row" style={{ gridColumn:'1 / -1', fontSize:12, opacity:.75, margin:'2px 0 8px' }}>
+          Leave any badge blank to auto-pick. Fill 2 greens + 1 red (or vice-versa) to force labels.
         </div>
-
-        <div style={{ gridColumn:'1 / -1', display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, alignItems:'start' }}>
-          <div>
-            {dynamicSlots.filter((_,i)=> i < Math.ceil(dynamicSlots.length/2)).map((sd) => (
-              <SlotSelect key={`${sd.slot}-${sd.idx}-L`} slotDef={sd} />
-            ))}
-          </div>
-          <div>
-            {dynamicSlots.filter((_,i)=> i >= Math.ceil(dynamicSlots.length/2)).map((sd) => (
-              <SlotSelect key={`${sd.slot}-${sd.idx}-R`} slotDef={sd} />
-            ))}
-          </div>
+        <SWRow index={0} />
+        <SWRow index={1} />
+        <SWRow index={2} />
+        <div className="wb-row" style={{ gridColumn:'1 / -1', display:'flex', justifyContent:'flex-end', marginTop:4 }}>
+          <button type="button" className="wb-danger" onClick={() => set('rosterStrengths.items', undefined)}>Clear All (Auto)</button>
         </div>
 
         {/* Draft Value Grade (manual) */}
@@ -792,45 +821,55 @@ export default function TweaksPanel({
           </label>
         </div>
 
-        {/* Top Waivers (manual overlay) */}
+        {/* Top Waivers (manual overlay) — SINGLE TILE */}
         <div className="wb-sep">Top Waivers (manual overlay)</div>
 
         <label>Show manual Top Waivers</label>
         <div style={{ display:'grid', gridTemplateColumns:'auto 1fr', gap:8, alignItems:'center' }}>
-          <input type="checkbox" checked={!!get('manualWaivers.enabled', false)} onChange={(e)=> set('manualWaivers.enabled', e.target.checked || undefined)} />
+          <input
+            type="checkbox"
+            checked={!!get('manualWaivers.enabled', false)}
+            onChange={(e)=> set('manualWaivers.enabled', e.target.checked || undefined)}
+          />
           <span style={{ fontSize:12, opacity:.7 }}>When ON, replaces the auto waivers with a single full-width tile.</span>
         </div>
 
         <label>Tile preset</label>
-        <select value={get('manualWaivers.preset', '')} onChange={(e)=> set('manualWaivers.preset', e.target.value || undefined)}>
+        <select
+          value={get('manualWaivers.preset', '')}
+          onChange={(e)=> set('manualWaivers.preset', e.target.value || undefined)}
+        >
           <option value="">— Select a preset —</option>
-          {['WR_UPSIDE','RB_UPSIDE','QB_UPSIDE','TE_UPSIDE'].map(p => (
-            <option key={p} value={p}>{p.replace('_',' ')}</option>
+          {WAIVER_PRESETS.map(p => (
+            <option key={p.id} value={p.id}>{p.label}</option>
           ))}
         </select>
 
         <label>Custom label (optional)</label>
-        <TextInput value={get('manualWaivers.label', '')} placeholder="leave blank to use preset label…" onCommit={(v)=> set('manualWaivers.label', v)} maxLength={40} />
+        <TextInput
+          value={get('manualWaivers.label', '')}
+          placeholder="leave blank to use preset label…"
+          onCommit={(v)=> set('manualWaivers.label', v)}
+          maxLength={40}
+        />
 
+        {/* NEW: Top Waivers Overrides (3 dropdowns; league free agents sorted by rank) */}
         <div className="wb-sep">Top Waivers Overrides</div>
         <div style={{ gridColumn:'1 / -1', fontSize:12, opacity:.75, margin:'2px 0 8px' }}>
           Pick exact players to show as <b>#1</b>, <b>#2</b>, <b>#3</b>. List shows <b>league free agents</b> (not on any roster), sorted by your Domain rank.
         </div>
-
         {[0,1,2].map((idx) => (
           <div key={idx} className="wb-row" style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:8, alignItems:'center' }}>
             <div style={{ fontWeight:700, opacity:.8 }}>Player {idx + 1}</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 6 }}>
-              <WaiverCombo
-                value={waiverOverrideIds[idx] || ''}
-                options={faOptionsSorted}
-                onChange={(id) => set(`topWaivers.overrideIds.${idx}`, id || undefined)}
-                placeholder="Type name, then choose…"
-              />
-              <div style={{ fontSize: 11, opacity: 0.65 }}>
-                Tip: start typing to filter; choose a suggestion or press Enter.
-              </div>
-            </div>
+            <select
+              value={waiverOverrideIds[idx] || ''}
+              onChange={(e)=> set(`topWaivers.overrideIds.${idx}`, e.target.value || undefined)}
+            >
+              <option value="">Auto</option>
+              {faOptionsSorted.map(opt => (
+                <option key={opt.id} value={opt.id}>{opt.label}</option>
+              ))}
+            </select>
             <button type="button" className="wb-danger" onClick={()=> set(`topWaivers.overrideIds.${idx}`, undefined)}>Clear</button>
           </div>
         ))}
@@ -839,7 +878,11 @@ export default function TweaksPanel({
         <div className="wb-sep">White Box Overlay</div>
         <label>Show white box overlay</label>
         <div style={{ display:'grid', gridTemplateColumns:'auto 1fr', gap:8, alignItems:'center' }}>
-          <input type="checkbox" checked={!!get('whiteBox.enabled', false)} onChange={(e)=> set('whiteBox.enabled', e.target.checked || undefined)} />
+          <input
+            type="checkbox"
+            checked={!!get('whiteBox.enabled', false)}
+            onChange={(e)=> set('whiteBox.enabled', e.target.checked || undefined)}
+          />
           <span style={{ fontSize:12, opacity:.7 }}>Toggle the white cover PNG (place/size in Whiteboard.jsx).</span>
         </div>
 
@@ -847,9 +890,20 @@ export default function TweaksPanel({
         <div className="wb-sep">Final Verdict</div>
         <label>Stars (1–5)</label>{numInput(get('finalVerdict.stars', null), 'finalVerdict.stars', { min: 1, max: 5 })}
         <label>Verdict Text</label>
-        <TextInput value={get('finalVerdict.note', '')} placeholder="Type your verdict (max 450 chars)…" onCommit={(v) => set('finalVerdict.note', v)} maxLength={450} />
+        <TextInput
+          value={get('finalVerdict.note', '')}
+          placeholder="Type your verdict (max 450 chars)…"
+          onCommit={(v) => set('finalVerdict.note', v)}
+          maxLength={450}
+          counterFrom={450}
+        />
 
-        {/* Moves To Make — keep your existing editors if any */}
+        {/* Moves To Make */}
+        <div className="wb-sep">Moves To Make (choose players)</div>
+        <MoveCardEditor moveId="trade"  title="#1 Column" />
+        <MoveCardEditor moveId="uptier" title="#2 Column" />
+        <MoveCardEditor moveId="pivot"  title="#3 Column" />
+
         {/* Manual Roster */}
         <div className="wb-sep">Manual Roster (type players; 12 rows)</div>
         <ManualRosterSection />
@@ -857,7 +911,12 @@ export default function TweaksPanel({
         {/* Actions */}
         <div className="wb-actions-row" style={{ gridColumn:'1 / -1' }}>
           <button onClick={onExport}>{exportLabel}</button>
-          <button onClick={async () => { await navigator.clipboard.writeText(window.location.href); alert('Share link copied!'); }}>
+          <button
+            onClick={async () => {
+              await navigator.clipboard.writeText(window.location.href);
+              alert('Share link copied!');
+            }}
+          >
             Copy Share Link
           </button>
           <button onClick={()=>onOverrides({})} className="wb-danger">Reset All</button>
