@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import './starters.css';
+import gradeData from '../players/players-by-id.json';
 
 /**
  * Props:
@@ -9,29 +10,7 @@ import './starters.css';
  */
 export default function Starters({ lineup = [], rosterIds = [], playersById = {} }) {
   const { leftCol, rightCol } = useMemo(() => {
-    const score = (p) =>
-      (p?.adp_half_ppr || p?.adp || 9999) + (p?.search_rank ? p.search_rank / 10000 : 0);
-
-    const usedIds = new Set(
-      (lineup || [])
-        .map((it) => it?.player?.player_id || it?.player?.id)
-        .filter(Boolean)
-        .map(String)
-    );
-
-    const allPlayers = (rosterIds || [])
-      .map((id) => playersById[id])
-      .filter(Boolean)
-      .map((p) => ({
-        ...p,
-        id: p.player_id || p.id,
-        name: p.full_name || `${p.first_name || ''} ${p.last_name || ''}`.trim(),
-        position:
-          (Array.isArray(p.fantasy_positions) && p.fantasy_positions[0]) || p.position || '',
-        team: p.team || p.pro_team || p.team_abbr || '',
-      }))
-      .sort((a, b) => score(a) - score(b));
-
+    // ---- Normalize the incoming lineup (used to mark starters + detect SFLEX) ----
     const startersNormalized = (lineup || []).map((it) => {
       const p = it.player || {};
       const id = p.player_id || p.id;
@@ -49,23 +28,76 @@ export default function Starters({ lineup = [], rosterIds = [], playersById = {}
       };
     });
 
-    // core = include SFLEX
+    // If any sflex in lineup, treat bench ranking as superflex context
+    const useSF = startersNormalized.some((p) => p.slot === 'sflex');
+
+    // Rank getter from players-by-id.json (NO ADP)
+    const rankForId = (id) => {
+      const g = gradeData?.[String(id)];
+      if (!g) return 999999;
+      const r = useSF ? Number(g?.['superflex-rank']) : Number(g?.rank);
+      return Number.isFinite(r) ? r : 999999;
+    };
+
+    // Starter ids (exclude from bench)
+    const usedIds = new Set(
+      (lineup || [])
+        .map((it) => it?.player?.player_id || it?.player?.id)
+        .filter(Boolean)
+        .map(String)
+    );
+
+    // Offensive positions only
+    const isOffense = (p) => {
+      const pos =
+        (Array.isArray(p?.fantasy_positions) && p.fantasy_positions[0]) ||
+        p?.position || '';
+      const POS = String(pos).toUpperCase();
+      return POS === 'QB' || POS === 'RB' || POS === 'WR' || POS === 'TE';
+    };
+
+    // Build roster pool and sort by Domain rank (or SF rank)
+    const allPlayers = (rosterIds || [])
+      .map((id) => playersById[id])
+      .filter(Boolean)
+      .map((p) => ({
+        ...p,
+        id: p.player_id || p.id,
+        name: p.full_name || `${p.first_name || ''} ${p.last_name || ''}`.trim(),
+        position:
+          (Array.isArray(p.fantasy_positions) && p.fantasy_positions[0]) ||
+          p.position || '',
+        team: p.team || p.pro_team || p.team_abbr || '',
+      }))
+      .filter(isOffense)
+      .sort((a, b) => {
+        const ra = rankForId(a.player_id || a.id);
+        const rb = rankForId(b.player_id || b.id);
+        if (ra !== rb) return ra - rb;
+        // stable tie-breaker
+        return String(a.name || '').localeCompare(String(b.name || ''));
+      });
+
+    // Core starters (including sflex & flex) come from lineup as-is
     const CORE = new Set(['qb', 'rb', 'wr', 'te', 'sflex', 'flex']);
     const startersCore = startersNormalized.filter((p) => CORE.has(p.slot));
     const startersCount = startersCore.length;
 
+    // ---- Your original row math (kept intact) ----
     const MIN_TOTAL = 10;
     const MIN_BENCH = 2;
 
     let totalNeeded = Math.max(MIN_TOTAL, startersCount + MIN_BENCH);
     if (totalNeeded % 2 !== 0) totalNeeded += 1;
 
+    // BENCH = top N remaining by Domain rank (exclude starters)
     const benchNeeded = Math.max(0, totalNeeded - startersCount);
-    const benchPool = allPlayers
-      .filter((p) => !usedIds.has(String(p.id)))
-      .slice(0, benchNeeded);
 
-    const bench = benchPool.map((p) => ({
+    const benchPoolAll = allPlayers.filter((p) => !usedIds.has(String(p.id)));
+    // Take top N by rank, then reverse so the best bench lands closest to starters
+    const benchSlice = benchPoolAll.slice(0, benchNeeded).reverse();
+
+    const bench = benchSlice.map((p) => ({
       id: p.id,
       name: p.name,
       position: p.position,
@@ -73,6 +105,7 @@ export default function Starters({ lineup = [], rosterIds = [], playersById = {}
       slot: 'bench',
     }));
 
+    // placeholders to keep grid even
     const placeholders = [];
     for (let i = startersCount + bench.length; i < totalNeeded; i++) {
       placeholders.push({
@@ -84,7 +117,7 @@ export default function Starters({ lineup = [], rosterIds = [], playersById = {}
       });
     }
 
-    // Order rows: QB → RB → WR → TE → SFLEX → FLEX → BENCH
+    // Final render order: QB → RB → WR → TE → SFLEX → FLEX → BENCH
     const order = ['qb', 'rb', 'wr', 'te', 'sflex', 'flex', 'bench'];
     const ordered = order
       .flatMap((slot) => startersCore.filter((p) => p.slot === slot))
