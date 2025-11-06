@@ -1,367 +1,367 @@
 Rank,1QB,SF
-1,Christian McCaffrey,Josh Allen
-2,Jonathan Taylor,Patrick Mahomes
-3,Ja'Marr Chase,Lamar Jackson
-4,Puka Nacua,Justin Herbert
-5,Jaxon Smith-Njigba,Dak Prescott
-6,Rashee Rice,Jayden Daniels
-7,Devon Achane,Drake Maye
-8,Bijan Robinson,Daniel Jones
+1,Jonathan Taylor,Josh Allen
+2,Christian McCaffrey,Lamar Jackson
+3,Jaxon Smith-Njigba,Justin Herbert
+4,Puka Nacua,Drake Maye
+5,Bijan Robinson,Jalen Hurts
+6,Amon-Ra St. Brown,Jaxson Dart
+7,James Cook,Baker Mayfield
+8,Devon Achane,Bo Nix
 9,Jahmyr Gibbs,Caleb Williams
-10,CeeDee Lamb,Kyler Murray
-11,Josh Jacobs,Jaxson Dart
-12,Justin Jefferson,Matthew Stafford
-13,Amon-Ra St. Brown,Jordan Love
-14,Derrick Henry,Jared Goff
-15,Javonte Williams,Brock Purdy
-16,Rome Odunze,Sam Darnold
-17,Drake London,Bo Nix
-18,James Cook,Aaron Rodgers
-19,Trey McBride,Trevor Lawrence
-20,D'Andre Swift,Tua Tagovailoa
-21,Kyren Williams,C.J. Stroud
-22,Kimani Vidal,Joe Flacco
-23,Nico Collins,J.J. McCarthy
-24,Jaylen Waddle,Michael Penix
-25,Michael Pittman,Geno Smith
-26,Ashton Jeanty,Bryce Young
-27,Tyler Warren,Cameron Ward
-28,Tucker Kraft,Tyler Shough
-29,DK Metcalf,Christian McCaffrey
-30,Davante Adams,Jonathan Taylor
-31,Tetairoa McMillan,Ja'Marr Chase
-32,Chase Brown,Puka Nacua
-33,George Pickens,Jaxon Smith-Njigba
-34,Marvin Harrison,Rashee Rice
-35,Ladd McConkey,Devon Achane
-36,Josh Allen,Bijan Robinson
-37,Patrick Mahomes,Jahmyr Gibbs
-38,Jaylen Warren,CeeDee Lamb
-39,Brian Thomas,Josh Jacobs
-40,Chris Olave,Justin Jefferson
-41,Jake Ferguson,Amon-Ra St. Brown
-42,Jordan Addison,Derrick Henry
-43,J.K. Dobbins,Javonte Williams
-44,Zay Flowers,Rome Odunze
-45,Deebo Samuel,Drake London
-46,Kareem Hunt,James Cook
-47,Brock Bowers,Trey McBride
-48,Tyrone Tracy,D'Andre Swift
-49,Tee Higgins,Kyren Williams
-50,Oronde Gadsden,Kimani Vidal
-51,Courtland Sutton,Nico Collins
-52,Travis Kelce,Jaylen Waddle
-53,Stefon Diggs,Michael Pittman
-54,Travis Etienne,Ashton Jeanty
-55,Xavier Worthy,Tyler Warren
-56,Rico Dowdle,Tucker Kraft
-57,Bam Knight,DK Metcalf
-58,Khalil Shakir,Davante Adams
-59,Wan'Dale Robinson,Tetairoa McMillan
-60,Kyle Pitts,Chase Brown
-61,Woody Marks,George Pickens
-62,Kenneth Walker,Marvin Harrison
-63,Rhamondre Stevenson,Ladd McConkey
-64,Quentin Johnston,Jaylen Warren
-65,Keenan Allen,Brian Thomas
-66,George Kittle,Chris Olave
-67,Lamar Jackson,Jake Ferguson
-68,Justin Herbert,Jordan Addison
-69,Romeo Doubs,J.K. Dobbins
-70,Zach Charbonnet,Zay Flowers
-71,Travis Hunter,Deebo Samuel
-72,Kendrick Bourne,Kareem Hunt
-73,Zach Ertz,Brock Bowers
-74,Sam LaPorta,Tyrone Tracy
-75,Dak Prescott,Tee Higgins
-76,Jayden Daniels,Oronde Gadsden
-77,Drake Maye,Courtland Sutton
-78,Daniel Jones,Travis Kelce
-79,Caleb Williams,Stefon Diggs
-80,Chuba Hubbard,Travis Etienne
-81,Rashid Shaheed,Xavier Worthy
-82,Jauan Jennings,Rico Dowdle
-83,Josh Downs,Bam Knight
-84,DJ Moore,Khalil Shakir
-85,Tre Tucker,Wan'Dale Robinson
-86,Jameson Williams,Kyle Pitts
-87,David Montgomery,Woody Marks
-88,Alvin Kamara,Kenneth Walker
-89,Kyler Murray,Rhamondre Stevenson
-90,Jaxson Dart,Quentin Johnston
-91,Matthew Stafford,Keenan Allen
-92,Aaron Jones,George Kittle
-93,RJ Harvey,Romeo Doubs
-94,Brashard Smith,Zach Charbonnet
-95,Kayshon Boutte,Travis Hunter
-96,Troy Franklin,Kendrick Bourne
-97,Matthew Golden,Zach Ertz
-98,Mark Andrews,Sam LaPorta
-99,Darnell Mooney,Chuba Hubbard
-100,Jacory Croskey-Merritt,Rashid Shaheed
-101,Jordan Love,Jauan Jennings
-102,Jared Goff,Josh Downs
-103,Brock Purdy,DJ Moore
-104,Sam Darnold,Tre Tucker
-105,Bo Nix,Jameson Williams
-106,Alec Pierce,David Montgomery
-107,Chimere Dike,Alvin Kamara
-108,Tony Pollard,Aaron Jones
-109,Tyjae Spears,RJ Harvey
-110,TreVeyon Henderson,Brashard Smith
-111,Cooper Kupp,Kayshon Boutte
-112,Juwan Johnson,Troy Franklin
-113,Christian Watson,Matthew Golden
-114,Jordan Mason,Mark Andrews
-115,Darius Slayton,Darnell Mooney
-116,Jaylin Noel,Jacory Croskey-Merritt
-117,Samaje Perine,Alec Pierce
-118,Colston Loveland,Chimere Dike
-119,Dalton Kincaid,Tony Pollard
-120,Michael Carter,Tyjae Spears
-121,Jakobi Meyers,TreVeyon Henderson
-122,T.J. Hockenson,Cooper Kupp
-123,Keon Coleman,Juwan Johnson
-124,Aaron Rodgers,Christian Watson
-125,Trevor Lawrence,Jordan Mason
-126,Evan Engram,Darius Slayton
-127,Malik Washington,Jaylin Noel
-128,Tua Tagovailoa,Samaje Perine
-129,Kyle Monangai,Colston Loveland
-130,Elic Ayomanor,Dalton Kincaid
-131,C.J. Stroud,Michael Carter
-132,AJ Barner,Jakobi Meyers
-133,Hunter Henry,T.J. Hockenson
-134,Joe Flacco,Keon Coleman
-135,J.J. McCarthy,Evan Engram
-136,Calvin Austin,Malik Washington
-137,Ollie Gordon II,Kyle Monangai
-138,Marquise Brown,Elic Ayomanor
-139,Theo Johnson,AJ Barner
-140,Dalton Schultz,Hunter Henry
-141,Olamide Zaccheaus,Calvin Austin
-142,Jayden Higgins,Ollie Gordon II
-143,Xavier Hutchinson,Marquise Brown
-144,Tyler Allgeier,Theo Johnson
-145,Nick Chubb,Dalton Schultz
-146,Jeremy McNichols,Olamide Zaccheaus
-147,Jonnu Smith,Jayden Higgins
-148,Pat Freiermuth,Xavier Hutchinson
-149,Blake Corum,Tyler Allgeier
-150,Van Jefferson,Nick Chubb
-151,Rashod Bateman,Jeremy McNichols
-152,Luke McCaffrey,Jonnu Smith
-153,Jalen Coker,Pat Freiermuth
-154,Xavier Legette,Blake Corum
-155,Mack Hollins,Van Jefferson
-156,Isaiah Likely,Rashod Bateman
-157,Brian Robinson,Luke McCaffrey
-158,Devin Singletary,Jalen Coker
-159,Justice Hill,Xavier Legette
-160,Michael Penix,Mack Hollins
-161,Geno Smith,Isaiah Likely
-162,Bryce Young,Brian Robinson
-163,Cameron Ward,Devin Singletary
-164,Tyler Shough,Justice Hill
-165,Kenneth Gainwell,Kenneth Gainwell
-166,Noah Fant,Noah Fant
-167,Chigoziem Okonkwo,Chigoziem Okonkwo
-168,Jaydon Blue,Jaydon Blue
-169,Emanuel Wilson,Emanuel Wilson
-170,Bhayshul Tuten,Bhayshul Tuten
+10,Rico Dowdle,Jared Goff
+11,Josh Jacobs,Matthew Stafford
+12,Justin Jefferson,Daniel Jones
+13,Saquon Barkley,Jordan Love
+14,Drake London,Sam Darnold
+15,Brock Bowers,Marcus Mariota
+16,Quinshon Judkins,Jacoby Brissett
+17,Trey McBride,Justin Fields
+18,Kyren Williams,J.J. McCarthy
+19,Davante Adams,Brock Purdy
+20,Emeka Egbuka,Aaron Rodgers
+21,Josh Allen,Michael Penix
+22,Jaylen Warren,Tua Tagovailoa
+23,Lamar Jackson,Trevor Lawrence
+24,Nico Collins,Bryce Young
+25,Ladd McConkey,Geno Smith
+26,Rome Odunze,Davis Mills
+27,Jaylen Waddle,Dillon Gabriel
+28,Derrick Henry,Tyler Shough
+29,D'Andre Swift,Jonathan Taylor
+30,Courtland Sutton,Christian McCaffrey
+31,Ashton Jeanty,Jaxon Smith-Njigba
+32,Garrett Wilson,Puka Nacua
+33,Justin Herbert,Bijan Robinson
+34,Michael Pittman,Amon-Ra St. Brown
+35,Zay Flowers,James Cook
+36,Drake Maye,Devon Achane
+37,DeVonta Smith,Jahmyr Gibbs
+38,A.J. Brown,Rico Dowdle
+39,Oronde Gadsden,Josh Jacobs
+40,Jalen Hurts,Justin Jefferson
+41,Quentin Johnston,Saquon Barkley
+42,J.K. Dobbins,Drake London
+43,Jaxson Dart,Brock Bowers
+44,Breece Hall,Quinshon Judkins
+45,Marvin Harrison,Trey McBride
+46,Baker Mayfield,Kyren Williams
+47,Wan'Dale Robinson,Davante Adams
+48,Sam LaPorta,Emeka Egbuka
+49,Tyler Warren,Jaylen Warren
+50,Chris Olave,Nico Collins
+51,Bo Nix,Ladd McConkey
+52,Travis Etienne,Rome Odunze
+53,Dalton Kincaid,Jaylen Waddle
+54,Rachaad White,Derrick Henry
+55,Deebo Samuel,D'Andre Swift
+56,Brian Thomas,Courtland Sutton
+57,Tetairoa McMillan,Ashton Jeanty
+58,George Kittle,Garrett Wilson
+59,Aaron Jones,Michael Pittman
+60,Jordan Addison,Zay Flowers
+61,TreVeyon Henderson,DeVonta Smith
+62,Kimani Vidal,A.J. Brown
+63,Trey Benson,Oronde Gadsden
+64,Dallas Goedert,Quentin Johnston
+65,Keenan Allen,J.K. Dobbins
+66,Stefon Diggs,Breece Hall
+67,Romeo Doubs,Marvin Harrison
+68,Kyle Monangai,Wan'Dale Robinson
+69,Harold Fannin,Sam LaPorta
+70,DJ Moore,Tyler Warren
+71,Caleb Williams,Chris Olave
+72,DK Metcalf,Travis Etienne
+73,Jared Goff,Dalton Kincaid
+74,Matthew Stafford,Rachaad White
+75,Jameson Williams,Deebo Samuel
+76,Kyle Pitts,Brian Thomas
+77,Daniel Jones,Tetairoa McMillan
+78,David Montgomery,George Kittle
+79,Khalil Shakir,Aaron Jones
+80,Jordan Love,Jordan Addison
+81,Kenneth Walker,TreVeyon Henderson
+82,Zach Charbonnet,Kimani Vidal
+83,Sam Darnold,Trey Benson
+84,Colston Loveland,Dallas Goedert
+85,Troy Franklin,Keenan Allen
+86,Jauan Jennings,Stefon Diggs
+87,RJ Harvey,Romeo Doubs
+88,Tez Johnson,Kyle Monangai
+89,Christian Watson,Harold Fannin
+90,Alvin Kamara,DJ Moore
+91,Cade Otton,DK Metcalf
+92,Jakobi Meyers,Jameson Williams
+93,Dalton Schultz,Kyle Pitts
+94,Alec Pierce,David Montgomery
+95,Tyrone Tracy,Khalil Shakir
+96,Woody Marks,Kenneth Walker
+97,David Njoku,Zach Charbonnet
+98,Jordan Mason,Colston Loveland
+99,Josh Downs,Troy Franklin
+100,Marcus Mariota,Jauan Jennings
+101,Mark Andrews,RJ Harvey
+102,Rashid Shaheed,Tez Johnson
+103,Devin Singletary,Christian Watson
+104,Jacoby Brissett,Alvin Kamara
+105,T.J. Hockenson,Cade Otton
+106,Kendrick Bourne,Jakobi Meyers
+107,Justin Fields,Dalton Schultz
+108,Tre Tucker,Alec Pierce
+109,Zach Ertz,Tyrone Tracy
+110,Hunter Henry,Woody Marks
+111,Darius Slayton,David Njoku
+112,Jerry Jeudy,Jordan Mason
+113,J.J. McCarthy,Josh Downs
+114,Parker Washington,Mark Andrews
+115,Olamide Zaccheaus,Rashid Shaheed
+116,Brock Purdy,Devin Singletary
+117,Matthew Golden,T.J. Hockenson
+118,Nick Chubb,Kendrick Bourne
+119,DeMario Douglas,Tre Tucker
+120,Aaron Rodgers,Zach Ertz
+121,Luke Musgrave,Hunter Henry
+122,Michael Penix,Darius Slayton
+123,Juwan Johnson,Jerry Jeudy
+124,Tua Tagovailoa,Parker Washington
+125,Christian Kirk,Olamide Zaccheaus
+126,Jacory Croskey-Merritt,Matthew Golden
+127,Jaret Patterson,Nick Chubb
+128,Trevor Lawrence,DeMario Douglas
+129,Malik Washington,Luke Musgrave
+130,Darnell Mooney,Juwan Johnson
+131,Bryce Young,Christian Kirk
+132,Calvin Austin,Jacory Croskey-Merritt
+133,Theo Johnson,Jaret Patterson
+134,Blake Corum,Malik Washington
+135,Geno Smith,Darnell Mooney
+136,Bhayshul Tuten,Calvin Austin
+137,Terrell Jennings,Theo Johnson
+138,Davis Mills,Blake Corum
+139,Kenneth Gainwell,Bhayshul Tuten
+140,Ollie Gordon,Terrell Jennings
+141,Keon Coleman,Kenneth Gainwell
+142,Cedric Tillman,Ollie Gordon
+143,Brandin Cooks,Keon Coleman
+144,Tory Horton,Cedric Tillman
+145,Chuba Hubbard,Brandin Cooks
+146,Emari Demercado,Tory Horton
+147,AJ Barner,Chuba Hubbard
+148,Mason Taylor,Emari Demercado
+149,Tank Bigsby,AJ Barner
+150,Tyler Allgeier,Mason Taylor
+151,Jeremy McNichols,Tank Bigsby
+152,Brian Robinson,Tyler Allgeier
+153,Sterling Shepard,Jeremy McNichols
+154,Isaiah Davis,Brian Robinson
+155,Dylan Sampson,Sterling Shepard
+156,Isaiah Likely,Isaiah Davis
+157,Evan Engram,Dylan Sampson
+158,Xavier Legette,Isaiah Likely
+159,Rashod Bateman,Evan Engram
+160,Jalen Coker,Xavier Legette
+161,Tyler Lockett,Rashod Bateman
+162,Dillon Gabriel,Jalen Coker
+163,Pat Freiermuth,Tyler Lockett
+164,Tyler Shough,Pat Freiermuth
+165,Elijah Arroyo,Elijah Arroyo
+166,Darnell Washington,Darnell Washington
+167,Jonnu Smith,Jonnu Smith
+168,Emanuel Wilson,Emanuel Wilson
+169,Sean Tucker,Sean Tucker
+170,Justice Hill,Justice Hill
 171,Devin Neal,Devin Neal
 172,Ty Johnson,Ty Johnson
-173,JuJu Smith-Schuster,JuJu Smith-Schuster
-174,Tyler Huntley,Tyler Huntley
-175,Ja'Tavion Sanders,Ja'Tavion Sanders
-176,Nick Westbrook-Ikhine,Nick Westbrook-Ikhine
-177,Michael Wilson,Michael Wilson
-178,Marvin Mims,Marvin Mims
-179,Pat Bryant,Pat Bryant
-180,Spencer Rattler,Spencer Rattler
-181,Andrei Iosivas,Andrei Iosivas
-182,Parker Washington,Parker Washington
-183,Terry McLaurin,Terry McLaurin
-184,DeMario Douglas,DeMario Douglas
-185,Lil'Jordan Humphrey,Lil'Jordan Humphrey
-186,Tyler Higbee,Tyler Higbee
-187,Ray Davis,Ray Davis
-188,Hunter Long,Hunter Long
-189,Gunnar Helm,Gunnar Helm
-190,Jalen Nailor,Jalen Nailor
-191,Tory Horton,Tory Horton
-192,Daniel Bellinger,Daniel Bellinger
-193,Jaylin Lane,Jaylin Lane
-194,DeAndre Hopkins,DeAndre Hopkins
-195,Brandin Cooks,Brandin Cooks
-196,Tyquan Thornton,Tyquan Thornton
-197,Luther Burden,Luther Burden
-198,KaVontae Turpin,KaVontae Turpin
-199,Elijah Moore,Elijah Moore
-200,Tommy Tremble,Tommy Tremble
-201,Emari Demercado,Emari Demercado
-202,Dyami Brown,Dyami Brown
-203,Chris Moore,Chris Moore
-204,Zay Jones,Zay Jones
-205,Ryan Flournoy,Ryan Flournoy
-206,Ricky Pearsall,Ricky Pearsall
-207,Darnell Washington,Darnell Washington
-208,Jalen Tolbert,Jalen Tolbert
-209,Jordan Whittington,Jordan Whittington
-210,Keaton Mitchell,Keaton Mitchell
-211,Dawson Knox,Dawson Knox
-212,Calvin Ridley,Calvin Ridley
-213,Tyler Badie,Tyler Badie
-214,Roman Wilson,Roman Wilson
-215,Christian Kirk,Christian Kirk
-216,Jaret Patterson,Jaret Patterson
-217,Demarcus Robinson,Demarcus Robinson
-218,Tre Harris,Tre Harris
-219,Isaac TeSlaa,Isaac TeSlaa
-220,Austin Hooper,Austin Hooper
-221,Tanner Conner,Tanner Conner
-222,Chris Brooks,Chris Brooks
-223,KhaDarel Hodge,KhaDarel Hodge
-224,Dont'e Thornton Jr.,Dont'e Thornton Jr.
-225,Noah Gray,Noah Gray
-226,Malik Heath,Malik Heath
-227,Taysom Hill,Taysom Hill
-228,Kaleb Johnson,Kaleb Johnson
-229,Casey Washington,Casey Washington
-230,Zavier Scott,Zavier Scott
-231,Tyrell Shavers,Tyrell Shavers
-232,Cole Kmet,Cole Kmet
-233,Kyle Juszczyk,Kyle Juszczyk
-234,Devaughn Vele,Devaughn Vele
-235,Nyheim Hines,Nyheim Hines
-236,Joshua Palmer,Joshua Palmer
-237,Jake Tonges,Jake Tonges
-238,David Sills V,David Sills V
-239,Michael Mayer,Michael Mayer
-240,Isiah Pacheco,Isiah Pacheco
-241,Jaylen Wright,Jaylen Wright
-242,Curtis Samuel,Curtis Samuel
-243,LeQuint Allen Jr.,LeQuint Allen Jr.
-244,Chris Rodriguez,Chris Rodriguez
-245,Raheem Mostert,Raheem Mostert
-246,Braxton Berrios,Braxton Berrios
-247,Hunter Luepke,Hunter Luepke
-248,Savion Williams,Savion Williams
-249,Tanner Hudson,Tanner Hudson
-250,Alec Ingold,Alec Ingold
-251,Jimmy Horn Jr.,Jimmy Horn Jr.
-252,Dare Ogunbowale,Dare Ogunbowale
-253,Kalif Raymond,Kalif Raymond
-254,Adonai Mitchell,Adonai Mitchell
-255,Greg Dortch,Greg Dortch
-256,Adam Thielen,Adam Thielen
-257,Trevor Etienne,Trevor Etienne
-258,Kyle Williams,Kyle Williams
-259,Dee Eskridge,Dee Eskridge
-260,Elijah Arroyo,Elijah Arroyo
-261,Jack Bech,Jack Bech
-262,Hunter Renfrow,Hunter Renfrow
-263,Beaux Collins,Beaux Collins
-264,Josh Oliver,Josh Oliver
-265,Terrell Jennings,Terrell Jennings
-266,Brycen Tremayne,Brycen Tremayne
-267,Anthony Gould,Anthony Gould
-268,Tahj Brooks,Tahj Brooks
-269,Adam Prentice,Adam Prentice
-270,Ashton Dulin,Ashton Dulin
-271,Patrick Ricard,Patrick Ricard
-272,Ray-Ray McCloud III,Ray-Ray McCloud III
-273,Tyler Lockett,Tyler Lockett
-274,Mason Kinsey,Mason Kinsey
-275,Skyy Moore,Skyy Moore
-276,Julius Chestnut,Julius Chestnut
-277,Tyler Goodson,Tyler Goodson
-278,Greg Dulcich,Greg Dulcich
-279,Hassan Haskins,Hassan Haskins
-280,Travis Homer,Travis Homer
-281,Isaac Guerendo,Isaac Guerendo
-282,Dameon Pierce,Dameon Pierce
-283,DJ Giddens,DJ Giddens
-284,Reggie Gilliam,Reggie Gilliam
-285,Rasheen Ali,Rasheen Ali
-286,MarShawn Lloyd,MarShawn Lloyd
-287,Cam Akers,Cam Akers
-288,Julian Hill,Julian Hill
-289,Davis Allen,Davis Allen
-290,Terrance Ferguson,Terrance Ferguson
-291,Colby Parkinson,Colby Parkinson
-292,Nathan Carter,Nathan Carter
-293,Amar Johnson,Amar Johnson
-294,Malik Davis,Malik Davis
-295,Donovan Edwards,Donovan Edwards
-296,Mitchell Evans,Mitchell Evans
-297,British Brooks,British Brooks
-298,Trayveon Williams,Trayveon Williams
-299,Dylan Laube,Dylan Laube
-300,Zamir White,Zamir White
-301,Sincere McCormick,Sincere McCormick
-302,Jackson Hawes,Jackson Hawes
-303,Roschon Johnson,Roschon Johnson
-304,Adam Trautman,Adam Trautman
-305,D'Ernest Johnson,D'Ernest Johnson
-306,Luke Schoonmaker,Luke Schoonmaker
-307,Devontez Walker,Devontez Walker
-308,Elijah Higgins,Elijah Higgins
-309,Dontayvion Wicks,Dontayvion Wicks
-310,Drew Sample,Drew Sample
-311,Luke Musgrave,Luke Musgrave
-312,Jalin Hyatt,Jalin Hyatt
-313,Johnny Mundt,Johnny Mundt
-314,Brock Wright,Brock Wright
-315,Will Dissly,Will Dissly
-316,Foster Moreau,Foster Moreau
-317,Tyler Conklin,Tyler Conklin
-318,Charlie Kolar,Charlie Kolar
-319,Cade Stover,Cade Stover
-320,Jalen Milroe,Jalen Milroe
-321,Jimmy Garoppolo,Jimmy Garoppolo
-322,Zach Wilson,Zach Wilson
-323,Quinn Ewers,Quinn Ewers
-324,Jake Browning,Jake Browning
-325,Malik Willis,Malik Willis
-326,Joshua Dobbs,Joshua Dobbs
-327,Joe Milton III,Joe Milton III
-328,Russell Wilson,Russell Wilson
-329,Mason Rudolph,Mason Rudolph
-330,Mitchell Trubisky,Mitchell Trubisky
-331,Cooper Rush,Cooper Rush
-332,Trey Lance,Trey Lance
-333,Drew Lock,Drew Lock
-334,Stetson Bennett IV,Stetson Bennett IV
-335,Davis Mills,Davis Mills
-336,Max Brosmer,Max Brosmer
-337,Kenny Pickett,Kenny Pickett
-338,Gardner Minshew II,Gardner Minshew II
-339,Tyson Bagent,Tyson Bagent
-340,Nick Mullens,Nick Mullens
-341,Jarrett Stidham,Jarrett Stidham
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
+173,Adonai Mitchell,Adonai Mitchell
+174,Jack Bech,Jack Bech
+175,Ray Davis,Ray Davis
+176,Keaton Mitchell,Keaton Mitchell
+177,Hunter Long,Hunter Long
+178,Tyler Higbee,Tyler Higbee
+179,Jacoby Brissett,Dawson Knox
+180,Dawson Knox,Jalen Nailor
+181,Jalen Nailor,Pat Bryant
+182,Marcus Mariota,Ja'Tavion Sanders
+183,Pat Bryant,Taysom Hill
+184,Brock Purdy,Nick Westbrook-Ikhine
+185,Ja'Tavion Sanders,Chris Moore
+186,Taysom Hill,Ricky Pearsall
+187,J.J. McCarthy,Cody White
+188,Andy Dalton,Jaylin Lane
+189,Nick Westbrook-Ikhine,DeAndre Hopkins
+190,Chris Moore,Dyami Brown
+191,Kirk Cousins,Michael Wilson
+192,Ricky Pearsall,Mack Hollins
+193,Jayden Daniels,Jayden Higgins
+194,Cody White,Xavier Hutchinson
+195,Jaylin Lane,Chris Godwin
+196,DeAndre Hopkins,Jaylin Noel
+197,Dyami Brown,Kyle Williams
+198,Michael Wilson,Luke McCaffrey
+199,Mack Hollins,Roman Wilson
+200,Jayden Higgins,Jahan Dotson
+201,Xavier Hutchinson,Luther Burden
+202,Chris Godwin,Tyler Johnson
+203,Jaylin Noel,Isaiah Bond
+204,Kyle Williams,Tre Harris
+205,Luke McCaffrey,Cooper Kupp
+206,Roman Wilson,Elijah Moore
+207,Jahan Dotson,Michael Mayer
+208,Luther Burden,Zay Jones
+209,Tyler Johnson,Isaac TeSlaa
+210,Isaiah Bond,Greg Dortch
+211,Tre Harris,Terry McLaurin
+212,Cooper Kupp,Bam Knight
+213,Elijah Moore,Jerome Ford
+214,Michael Mayer,Kayshon Boutte
+215,Zay Jones,Jordan Whittington
+216,Isaac TeSlaa,Brittain Brown
+217,Greg Dortch,Ray-Ray McCloud
+218,Terry McLaurin,Treylon Burks
+219,Bam Knight,LeQuint Allen
+220,Jerome Ford,Raheem Mostert
+221,Kayshon Boutte,Tyler Badie
+222,Jordan Whittington,Arian Smith
+223,Brittain Brown,Zavier Scott
+224,Ray-Ray McCloud,Jamari Thrash
+225,Treylon Burks,Marvin Mims
+226,LeQuint Allen,Davis Allen
+227,Raheem Mostert,Michael Carter
+228,Tyler Badie,Jaylen Wright
+229,Arian Smith,Ameer Abdullah
+230,Zavier Scott,Kameron Johnson
+231,Jamari Thrash,Chris Rodriguez
+232,Marvin Mims,Rhamondre Stevenson
+233,Davis Allen,Kaleb Johnson
+234,Michael Carter,Joshua Palmer
+235,Jaylen Wright,Curtis Samuel
+236,Ameer Abdullah,Malik Heath
+237,Kameron Johnson,David Sills V
+238,Chris Rodriguez,Greg Dulcich
+239,Rhamondre Stevenson,Austin Hooper
+240,Kaleb Johnson,Terrance Ferguson
+241,Joshua Palmer,Tommy Tremble
+242,Curtis Samuel,Demarcus Robinson
+243,Malik Heath,Skyy Moore
+244,David Sills V,Xavier Smith
+245,Greg Dulcich,Kalif Raymond
+246,Austin Hooper,Allen Lazard
+247,Terrance Ferguson,Josh Reynolds
+248,Tommy Tremble,Hunter Renfrow
+249,Demarcus Robinson,Charlie Kolar
+250,Skyy Moore,Tim Patrick
+251,Xavier Smith,Austin Trammell
+252,Kalif Raymond,Tim Jones
+253,Allen Lazard,Isaiah Williams
+254,Josh Reynolds,Cole Kmet
+255,Hunter Renfrow,Adam Trautman
+256,Charlie Kolar,Chris Brooks
+257,Tim Patrick,Dont'e Thornton
+258,Austin Trammell,Dontayvion Wicks
+259,Tim Jones,Jake Tonges
+260,Isaiah Williams,DJ Giddens
+261,Cole Kmet,Daniel Bellinger
+262,Adam Trautman,Tyrell Shavers
+263,Chris Brooks,Jackson Hawes
+264,Dont'e Thornton,Brock Wright
+265,Dontayvion Wicks,Tyler Goodson
+266,Jake Tonges,Kyle Juszczyk
+267,DJ Giddens,Jeremy Ruckert
+268,Daniel Bellinger,Bucky Irving
+269,Tyrell Shavers,Will Shipley
+270,Jackson Hawes,Colby Parkinson
+271,Brock Wright,Dylan Laube
+272,Tyler Goodson,Julian Hill
+273,Kyle Juszczyk,Thomas Fidone
+274,Jeremy Ruckert,Devaughn Vele
+275,Bucky Irving,Devontez Walker
+276,Will Shipley,Zamir White
+277,Colby Parkinson,Elijah Higgins
+278,Dylan Laube,Johnny Mundt
+279,Julian Hill,Mitchell Evans
+280,Thomas Fidone,MarShawn Lloyd
+281,Devaughn Vele,Tanner Conner
+282,Devontez Walker,Jimmy Horn
+283,Zamir White,Lil'Jordan Humphrey
+284,Elijah Higgins,Trevor Etienne
+285,Johnny Mundt,Jalin Hyatt
+286,Mitchell Evans,Jayden Reed
+287,MarShawn Lloyd,Braelon Allen
+288,Tanner Conner,Josh Oliver
+289,Jimmy Horn,A.J. Dillon
+290,Lil'Jordan Humphrey,Will Dissly
+291,Trevor Etienne,Roschon Johnson
+292,Jalin Hyatt,Adam Thielen
+293,Jayden Reed,Foster Moreau
+294,Braelon Allen,Tyler Conklin
+295,Josh Oliver,Joe Mixon
+296,A.J. Dillon,Casey Washington
+297,Will Dissly,Brandon Aiyuk
+298,Roschon Johnson,Kenny Pickett
+299,Adam Thielen,Tyler Huntley
+300,Foster Moreau,Zach Wilson
+301,Tyler Conklin,Quinn Ewers
+302,Joe Mixon,Malik Willis
+303,Casey Washington,Joshua Dobbs
+304,Brandon Aiyuk,Andy Dalton
+305,Brock Purdy,Jimmy Garoppolo
+306,Justin Fields,Mason Rudolph
+307,Spencer Rattler,Shedeur Sanders
+308,Tyrod Taylor,Mitchell Trubisky
+309,Mac Jones,Trey Lance
+310,Kyler Murray,Kirk Cousins
+311,C.J. Stroud,Sam Howell
+312,Anthony Richardson,Drew Lock
+313,Kenny Pickett,Teddy Bridgewater
+314,Tyler Huntley,Max Brosmer
+315,Zach Wilson,Tyson Bagent
+316,Quinn Ewers,Nick Mullens
+317,Malik Willis,Jarrett Stidham
+318,Mac Jones,Kyle Allen
+319,Jalen Milroe,Cooper Rush
+320,Joshua Dobbs,Jameis Winston
+321,Russell Wilson,Will Howard
+322,Andy Dalton,
+323,Jimmy Garoppolo,
+324,Mason Rudolph,
+325,Shedeur Sanders,
+326,Mitchell Trubisky,
+327,Trey Lance,
+328,Kirk Cousins,
+329,Sam Howell,
+330,Drew Lock,
+331,Teddy Bridgewater,
+332,Max Brosmer,
+333,Tyson Bagent,
+334,Nick Mullens,
+335,Jarrett Stidham,
+336,Kyle Allen,
+337,Cooper Rush,
+338,Jameis Winston,
+339,Will Howard,
+340,Mitchell Trubisky,
+341,Cooper Rush,
+341,Trey Lance,
+341,Drew Lock,
+341,Stetson Bennett IV,
+341,Davis Mills,
+341,Max Brosmer,
+341,Kenny Pickett,
+341,Gardner Minshew II,
+341,Tyson Bagent,
+341,Nick Mullens,
+341,Jarrett Stidham,
+341,Jimmy Garoppolo,
+341,Bucky Irving,
+341,Tyrone Tracy Jr.,
+341,Malik Willis,
+341,Joshua Dobbs,
+341,Mason Rudolph,
+341,Joe Milton III,
+341,Mitchell Trubisky,
+341,Jacoby Brissett,
+341,Trey Lance,
+341,Kirk Cousins,
+341,Sam Howell,
 ,,
 ,,
 ,,
