@@ -5,7 +5,7 @@
     "name": "Josh Allen",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "GREEN"
     }
@@ -16,7 +16,7 @@
     "name": "Drake Maye",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -27,9 +27,9 @@
     "name": "Matthew Stafford",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -49,7 +49,7 @@
     "name": "Lamar Jackson",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -60,9 +60,9 @@
     "name": "Patrick Mahomes",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -71,9 +71,9 @@
     "name": "Jalen Hurts",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -93,9 +93,9 @@
     "name": "Jaxson Dart",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -115,9 +115,9 @@
     "name": "Jared Goff",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -126,9 +126,9 @@
     "name": "Jayden Daniels",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -137,9 +137,9 @@
     "name": "Trevor Lawrence",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -148,7 +148,7 @@
     "name": "Baker Mayfield",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -159,7 +159,7 @@
     "name": "Bo Nix",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -170,7 +170,7 @@
     "name": "Jordan Love",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -182,8 +182,8 @@
     "pos": "QB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "GREEN"
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -203,9 +203,9 @@
     "name": "Justin Herbert",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -214,7 +214,7 @@
     "name": "Bryce Young",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -225,7 +225,7 @@
     "name": "Caleb Williams",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -258,9 +258,9 @@
     "name": "Tyler Shough",
     "pos": "QB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -269,7 +269,7 @@
     "name": "Shedeur Sanders",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -280,7 +280,7 @@
     "name": "Aaron Rodgers",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -315,7 +315,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -324,9 +324,9 @@
     "name": "Kirk Cousins",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -335,7 +335,7 @@
     "name": "Geno Smith",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -368,9 +368,9 @@
     "name": "Puka Nacua",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -379,9 +379,9 @@
     "name": "Jahmyr Gibbs",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -390,9 +390,9 @@
     "name": "Jaxon Smith-Njigba",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -401,9 +401,9 @@
     "name": "Devon Achane",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -412,7 +412,7 @@
     "name": "Ja'Marr Chase",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -425,7 +425,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -434,9 +434,9 @@
     "name": "Rashee Rice",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -456,9 +456,9 @@
     "name": "Davante Adams",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -467,9 +467,9 @@
     "name": "Bijan Robinson",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -478,7 +478,7 @@
     "name": "Nico Collins",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -500,9 +500,9 @@
     "name": "Michael Wilson",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -522,8 +522,8 @@
     "name": "Derrick Henry",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "GREEN",
+      "matchup": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -533,9 +533,9 @@
     "name": "Travis Etienne",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -544,9 +544,9 @@
     "name": "Jaylen Waddle",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "matchup": "RED",
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -566,7 +566,7 @@
     "name": "James Cook",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "GREEN"
     }
@@ -577,7 +577,7 @@
     "name": "Josh Jacobs",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -590,7 +590,7 @@
     "lights": {
       "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -599,9 +599,9 @@
     "name": "A.J. Brown",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -621,7 +621,7 @@
     "name": "Jonathan Taylor",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "RED"
     }
@@ -632,7 +632,7 @@
     "name": "TreVeyon Henderson",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -645,7 +645,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -656,7 +656,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -700,7 +700,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -709,9 +709,9 @@
     "name": "Wan'Dale Robinson",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -720,7 +720,7 @@
     "name": "Jaylen Warren",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -731,9 +731,9 @@
     "name": "Terry McLaurin",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -742,9 +742,9 @@
     "name": "Jakobi Meyers",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -754,8 +754,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "RED",
-      "offense": "YELLOW",
-      "vegas": "GREEN"
+      "offense": "GREEN",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -764,9 +764,9 @@
     "name": "Omarion Hampton",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
-      "offense": "RED",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -776,7 +776,7 @@
     "pos": "RB",
     "lights": {
       "matchup": "GREEN",
-      "offense": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -786,7 +786,7 @@
     "name": "Ashton Jeanty",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -808,8 +808,8 @@
     "name": "Harold Fannin",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "matchup": "RED",
+      "offense": "GREEN",
       "vegas": "RED"
     }
   },
@@ -819,9 +819,9 @@
     "name": "DeVonta Smith",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -841,7 +841,7 @@
     "name": "Quinshon Judkins",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -863,8 +863,8 @@
     "name": "Jauan Jennings",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "GREEN",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -874,7 +874,7 @@
     "name": "DK Metcalf",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -885,8 +885,8 @@
     "name": "Breece Hall",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
-      "offense": "YELLOW",
+      "matchup": "YELLOW",
+      "offense": "RED",
       "vegas": "RED"
     }
   },
@@ -896,7 +896,7 @@
     "name": "D'Andre Swift",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -907,7 +907,7 @@
     "name": "Zay Flowers",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "GREEN"
     }
@@ -918,7 +918,7 @@
     "name": "Christian Watson",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -930,7 +930,7 @@
     "pos": "WR",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "offense": "GREEN",
       "vegas": "YELLOW"
     }
   },
@@ -951,9 +951,9 @@
     "name": "Kenneth Walker",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -975,7 +975,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -995,9 +995,9 @@
     "name": "Ladd McConkey",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "GREEN",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1006,9 +1006,9 @@
     "name": "Brian Thomas",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1017,9 +1017,9 @@
     "name": "Deebo Samuel",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1039,7 +1039,7 @@
     "name": "Rhamondre Stevenson",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1050,7 +1050,7 @@
     "name": "Kyle Monangai",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -1083,9 +1083,9 @@
     "name": "Chris Rodriguez",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1094,7 +1094,7 @@
     "name": "Michael Pittman",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -1127,7 +1127,7 @@
     "name": "DJ Moore",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1160,9 +1160,9 @@
     "name": "Devin Singletary",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1171,7 +1171,7 @@
     "name": "Jerry Jeudy",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -1182,7 +1182,7 @@
     "name": "Andrei Iosivas",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -1195,7 +1195,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "RED",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1204,7 +1204,7 @@
     "name": "Jake Ferguson",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -1226,9 +1226,9 @@
     "name": "Tyrone Tracy",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1249,8 +1249,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1259,7 +1259,7 @@
     "name": "Tyler Warren",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -1270,7 +1270,7 @@
     "name": "Kenneth Gainwell",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1281,9 +1281,9 @@
     "name": "Darius Slayton",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1292,7 +1292,7 @@
     "name": "Luther Burden",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1304,8 +1304,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "offense": "RED",
+      "vegas": "RED"
     }
   },
   {
@@ -1314,8 +1314,8 @@
     "name": "Ricky Pearsall",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "GREEN",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -1325,9 +1325,9 @@
     "name": "Zach Charbonnet",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1336,9 +1336,9 @@
     "name": "Kyle Pitts",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
-      "vegas": "YELLOW"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "GREEN"
     }
   },
   {
@@ -1347,7 +1347,7 @@
     "name": "Romeo Doubs",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1358,7 +1358,7 @@
     "name": "Alec Pierce",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -1369,9 +1369,9 @@
     "name": "Travis Kelce",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
-      "offense": "GREEN",
-      "vegas": "YELLOW"
+      "matchup": "YELLOW",
+      "offense": "YELLOW",
+      "vegas": "RED"
     }
   },
   {
@@ -1380,7 +1380,7 @@
     "name": "Tony Pollard",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -1402,9 +1402,9 @@
     "name": "David Montgomery",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -1413,7 +1413,7 @@
     "name": "Dalton Schultz",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "GREEN"
     }
@@ -1424,9 +1424,9 @@
     "name": "Quentin Johnston",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "GREEN",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1435,7 +1435,7 @@
     "name": "Jayden Reed",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1446,7 +1446,7 @@
     "name": "Jayden Higgins",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -1480,8 +1480,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "RED",
-      "offense": "YELLOW",
-      "vegas": "GREEN"
+      "offense": "GREEN",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1502,7 +1502,7 @@
     "pos": "WR",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "offense": "GREEN",
       "vegas": "YELLOW"
     }
   },
@@ -1523,9 +1523,9 @@
     "name": "Xavier Worthy",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1534,9 +1534,9 @@
     "name": "Theo Johnson",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1545,9 +1545,9 @@
     "name": "Rashid Shaheed",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1556,9 +1556,9 @@
     "name": "Dallas Goedert",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -1569,7 +1569,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1578,9 +1578,9 @@
     "name": "Kimani Vidal",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
-      "offense": "RED",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1600,7 +1600,7 @@
     "name": "Mike Gesicki",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -1612,8 +1612,8 @@
     "pos": "TE",
     "lights": {
       "matchup": "GREEN",
-      "offense": "RED",
-      "vegas": "RED"
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1635,7 +1635,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -1644,9 +1644,9 @@
     "name": "Cooper Kupp",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1655,9 +1655,9 @@
     "name": "Keenan Allen",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "GREEN",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1666,8 +1666,8 @@
     "name": "T.J. Hockenson",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "RED",
+      "offense": "YELLOW",
       "vegas": "YELLOW"
     }
   },
@@ -1721,7 +1721,7 @@
     "name": "Mason Taylor",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -1732,7 +1732,7 @@
     "name": "Pat Freiermuth",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -1776,7 +1776,7 @@
     "name": "Tyjae Spears",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -1787,9 +1787,9 @@
     "name": "Tyler Allgeier",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -1809,7 +1809,7 @@
     "name": "Dylan Sampson",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -1821,8 +1821,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1831,9 +1831,9 @@
     "name": "Oronde Gadsden",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "matchup": "YELLOW",
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1842,9 +1842,9 @@
     "name": "Malik Washington",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "matchup": "RED",
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1853,7 +1853,7 @@
     "name": "Josh Downs",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -1865,7 +1865,7 @@
     "pos": "WR",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "offense": "GREEN",
       "vegas": "YELLOW"
     }
   },
@@ -1875,9 +1875,9 @@
     "name": "Marquise Brown",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -1887,8 +1887,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "offense": "RED",
+      "vegas": "RED"
     }
   },
   {
@@ -1919,9 +1919,9 @@
     "name": "Bhayshul Tuten",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -1963,7 +1963,7 @@
     "name": "Ty Johnson",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "GREEN"
     }
@@ -1996,9 +1996,9 @@
     "name": "Jaylen Wright",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2007,9 +2007,9 @@
     "name": "Jacory Croskey-Merritt",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -2040,7 +2040,7 @@
     "name": "Evan Engram",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -2051,7 +2051,7 @@
     "name": "Jonnu Smith",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -2062,7 +2062,7 @@
     "name": "Ja'Tavion Sanders",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -2084,8 +2084,8 @@
     "name": "David Njoku",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "matchup": "RED",
+      "offense": "GREEN",
       "vegas": "RED"
     }
   },
@@ -2107,7 +2107,7 @@
     "pos": "WR",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
+      "offense": "GREEN",
       "vegas": "YELLOW"
     }
   },
@@ -2150,7 +2150,7 @@
     "name": "Cade Otton",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -2172,7 +2172,7 @@
     "name": "Chigoziem Okonkwo",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -2183,7 +2183,7 @@
     "name": "Tyler Lockett",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -2194,7 +2194,7 @@
     "name": "Jerome Ford",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "RED"
     }
@@ -2216,9 +2216,9 @@
     "name": "Noah Brown",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -2227,7 +2227,7 @@
     "name": "Emanuel Wilson",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -2238,7 +2238,7 @@
     "name": "Ray Davis",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "GREEN"
     }
@@ -2249,8 +2249,8 @@
     "name": "Keaton Mitchell",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "GREEN",
+      "matchup": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -2261,7 +2261,7 @@
     "pos": "RB",
     "lights": {
       "matchup": "GREEN",
-      "offense": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -2271,7 +2271,7 @@
     "name": "Rome Odunze",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -2293,7 +2293,7 @@
     "name": "Christian Kirk",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -2304,7 +2304,7 @@
     "name": "Dontayvion Wicks",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -2315,7 +2315,7 @@
     "name": "Rashod Bateman",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "GREEN"
     }
@@ -2338,8 +2338,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "offense": "RED",
+      "vegas": "RED"
     }
   },
   {
@@ -2348,7 +2348,7 @@
     "name": "Tee Higgins",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "GREEN",
       "vegas": "YELLOW"
     }
@@ -2359,9 +2359,9 @@
     "name": "Marvin Harrison",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2403,7 +2403,7 @@
     "name": "Calvin Austin",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -2414,7 +2414,7 @@
     "name": "Cedric Tillman",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -2425,7 +2425,7 @@
     "name": "Matthew Golden",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -2436,7 +2436,7 @@
     "name": "DeAndre Hopkins",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "GREEN"
     }
@@ -2570,7 +2570,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -2590,9 +2590,9 @@
     "name": "Tyquan Thornton",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -2634,8 +2634,8 @@
     "name": "Kendrick Bourne",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "GREEN",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -2657,8 +2657,8 @@
     "pos": "RB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2667,7 +2667,7 @@
     "name": "Isaiah Bond",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -2678,9 +2678,9 @@
     "name": "Ollie Gordon",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2702,7 +2702,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2711,7 +2711,7 @@
     "name": "Jaylin Noel",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "GREEN"
     }
@@ -2744,7 +2744,7 @@
     "name": "Noah Fant",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -2788,9 +2788,9 @@
     "name": "JuJu Smith-Schuster",
     "pos": "WR99",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -2801,7 +2801,7 @@
     "lights": {
       "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -2812,7 +2812,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -2843,8 +2843,8 @@
     "name": "Demarcus Robinson",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "GREEN",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -2867,7 +2867,7 @@
     "lights": {
       "matchup": "GREEN",
       "offense": "RED",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -2887,8 +2887,8 @@
     "name": "Lil'Jordan Humphrey",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "YELLOW",
+      "matchup": "YELLOW",
+      "offense": "GREEN",
       "vegas": "YELLOW"
     }
   },
@@ -2898,8 +2898,8 @@
     "name": "Justice Hill",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
-      "offense": "GREEN",
+      "matchup": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -2920,9 +2920,9 @@
     "name": "Noah Gray",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
-      "offense": "GREEN",
-      "vegas": "YELLOW"
+      "matchup": "YELLOW",
+      "offense": "YELLOW",
+      "vegas": "RED"
     }
   },
   {
@@ -2975,9 +2975,9 @@
     "name": "Jahan Dotson",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "GREEN"
     }
   },
   {
@@ -2997,7 +2997,7 @@
     "name": "Raheem Mostert",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -3019,9 +3019,9 @@
     "name": "Tory Horton",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3030,9 +3030,9 @@
     "name": "Terrance Ferguson",
     "pos": "TE",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3063,9 +3063,9 @@
     "name": "Tutu Atwell",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3085,8 +3085,8 @@
     "name": "Braelon Allen",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
-      "offense": "YELLOW",
+      "matchup": "YELLOW",
+      "offense": "RED",
       "vegas": "RED"
     }
   },
@@ -3140,9 +3140,9 @@
     "name": "Elijah Arroyo",
     "pos": "TE",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3173,7 +3173,7 @@
     "name": "Dont'e Thornton",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -3218,7 +3218,7 @@
     "pos": "RB",
     "lights": {
       "matchup": "GREEN",
-      "offense": "YELLOW",
+      "offense": "RED",
       "vegas": "YELLOW"
     }
   },
@@ -3239,7 +3239,7 @@
     "name": "DJ Giddens",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "GREEN",
       "vegas": "RED"
     }
@@ -3250,7 +3250,7 @@
     "name": "Roman Wilson",
     "pos": "WR",
     "lights": {
-      "matchup": "RED",
+      "matchup": "GREEN",
       "offense": "RED",
       "vegas": "YELLOW"
     }
@@ -3294,9 +3294,9 @@
     "name": "Jordan Whittington",
     "pos": "WR",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "GREEN",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3338,7 +3338,7 @@
     "name": "MarShawn Lloyd",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
+      "matchup": "YELLOW",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -3349,9 +3349,9 @@
     "name": "Hassan Haskins",
     "pos": "RB",
     "lights": {
-      "matchup": "RED",
-      "offense": "RED",
-      "vegas": "RED"
+      "matchup": "GREEN",
+      "offense": "YELLOW",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3382,7 +3382,7 @@
     "name": "Zamir White",
     "pos": "RB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "YELLOW",
       "offense": "RED",
       "vegas": "RED"
     }
@@ -3459,9 +3459,9 @@
     "name": "Dyami Brown",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "GREEN"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3470,7 +3470,7 @@
     "name": "Kaleb Johnson",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "RED",
       "offense": "YELLOW",
       "vegas": "YELLOW"
     }
@@ -3591,9 +3591,9 @@
     "name": "Roschon Johnson",
     "pos": "RB",
     "lights": {
-      "matchup": "YELLOW",
+      "matchup": "GREEN",
       "offense": "GREEN",
-      "vegas": "RED"
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3635,9 +3635,9 @@
     "name": "Devontez Walker",
     "pos": "WR100",
     "lights": {
-      "matchup": "RED",
-      "offense": "RED",
-      "vegas": "GREEN"
+      "matchup": "YELLOW",
+      "offense": "YELLOW",
+      "vegas": "RED"
     }
   },
   {
@@ -3657,9 +3657,9 @@
     "name": "Tyler Conklin",
     "pos": "TE",
     "lights": {
-      "matchup": "RED",
-      "offense": "YELLOW",
-      "vegas": "RED"
+      "matchup": "YELLOW",
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
@@ -3669,7 +3669,7 @@
     "pos": "RB",
     "lights": {
       "matchup": "GREEN",
-      "offense": "RED",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -3756,8 +3756,8 @@
     "name": "Brandon Aiyuk",
     "pos": "WR",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "RED",
+      "matchup": "GREEN",
+      "offense": "YELLOW",
       "vegas": "GREEN"
     }
   },
@@ -3767,9 +3767,9 @@
     "name": "Jayden Daniels",
     "pos": "QB",
     "lights": {
-      "matchup": "GREEN",
+      "matchup": "RED",
       "offense": "YELLOW",
-      "vegas": "YELLOW"
+      "vegas": "RED"
     }
   },
   {
@@ -3800,9 +3800,9 @@
     "name": "Anthony Richardson",
     "pos": "QB",
     "lights": {
-      "matchup": "YELLOW",
-      "offense": "GREEN",
-      "vegas": "RED"
+      "matchup": "#N/A",
+      "offense": "#N/A",
+      "vegas": "#N/A"
     }
   },
   {
@@ -3867,8 +3867,8 @@
     "pos": "QB",
     "lights": {
       "matchup": "YELLOW",
-      "offense": "YELLOW",
-      "vegas": "GREEN"
+      "offense": "RED",
+      "vegas": "YELLOW"
     }
   },
   {
